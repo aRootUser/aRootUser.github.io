@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>定点识别 | welcome to my blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基于object_detection训练自己的模型">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定点识别">
+<meta property="og:url" content="www.shadowerli.com/2018/04/08/2018-4-8/index.html">
+<meta property="og:site_name" content="welcome to my blog">
+<meta property="og:description" content="基于object_detection训练自己的模型">
+<meta property="og:updated_time" content="2018-04-15T11:15:44.015Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="定点识别">
+<meta name="twitter:description" content="基于object_detection训练自己的模型">
+  
+    <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Shadowerli</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                            <li><a  href="/categories/大数据">大数据</a></li>
+                        
+                            <li><a  href="/categories/深度学习">深度学习</a></li>
+                        
+                            <li><a  href="/categories/机器学习">机器学习</a></li>
+                        
+                            <li><a  href="/categories/other">其他</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                            
+                                <a class="fl facebook"  target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/cnn/" style="font-size: 10px;">cnn</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/other/" style="font-size: 20px;">other</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.shadowerli.com/about">想互相添加友链的邮箱联系、广告除外</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://qiuri.org">秋日的博客</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Shadowerli</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Shadowerli</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                    <li><a href="/categories/大数据">大数据</a></li>
+                
+                    <li><a href="/categories/深度学习">深度学习</a></li>
+                
+                    <li><a href="/categories/机器学习">机器学习</a></li>
+                
+                    <li><a href="/categories/other">其他</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2018-4-8" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/04/08/2018-4-8/" class="article-date">
+      <time datetime="2018-04-07T16:00:00.000Z" itemprop="datePublished">2018-04-08</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      定点识别
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/深度识别/">深度识别</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>基于object_detection训练自己的模型<br><a id="more"></a><br>花了不知道多少天、、主要参加一个定点识别的比赛、算是把模型搞定了、虽然结果十分的令人喜感（哈哈、不说了）、、难度有一点大（主要是各种天坑、在这里记录一下）</excerpt></p>
+<p>这是阿里天池的比赛、比赛给出上万张图片主要是服装、要在每个图片上识别出服装每个关键点、并将识别结果的坐标输出、比如左袖口什么的、差不多有24个标签吧、训练集给出的是每个图片的所有关键点的坐标、我的思路是先根据坐标<br>转化成矩形框(同时对x和y加上自己定义的距离数)、然后通过object_detection确定定位的位置、最后在进行输出(求两个x和两个y的平均来得到中心点)、具体步骤如下：</p>
+<h2 id="根据lable切分图片"><a href="#根据lable切分图片" class="headerlink" title="根据lable切分图片"></a>根据lable切分图片</h2><p>这个脚本主要是根据lable对图片进行切分、根据lable创建若干个文件夹、切好的图片放到每个对应的文件加下、切分完得到几十万张图片(此刻的内心是奔溃的)、<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">path=os.getcwd()</span><br><span class="line"><span class="comment">#自己定义框的宽度wide</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawcnts_and_cut</span><span class="params">(original_img,x,y,wide)</span>:</span></span><br><span class="line">    x1=x-wide</span><br><span class="line">    x2=x+wide</span><br><span class="line">    y1=y-wide</span><br><span class="line">    y2=y+wide</span><br><span class="line">    crop_img = original_img[y1:y2, x1:x2]</span><br><span class="line">    <span class="keyword">return</span>  crop_img</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(img_path,save_path,x,y)</span>:</span></span><br><span class="line">    original_img= cv2.imread(img_path)</span><br><span class="line">    crop_img = drawcnts_and_cut(original_img,int(x),int(y),<span class="number">25</span>)</span><br><span class="line">    cv2.imwrite(save_path, crop_img)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">datatranslate</span><span class="params">(data)</span>:</span></span><br><span class="line">    splited=str(data).split()</span><br><span class="line">    <span class="keyword">return</span> splited[<span class="number">0</span>],splited[<span class="number">1</span>]</span><br><span class="line">	</span><br><span class="line"><span class="comment">#自己根据标签数量来改</span></span><br><span class="line">lable=[<span class="string">'class1'</span>, <span class="string">'class2'</span>]	</span><br><span class="line">csv_reader = csv.reader(open(<span class="string">'train\\input.csv'</span>, encoding=<span class="string">'utf-8'</span>))</span><br><span class="line">num=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> csv_reader:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">26</span>,<span class="number">1</span>):</span><br><span class="line">        photo=row[<span class="number">0</span>]</span><br><span class="line">        data=row[i]</span><br><span class="line">        category=lable[i]</span><br><span class="line">        splited = str(row[i]).split(<span class="string">"_"</span>)</span><br><span class="line">        print(photo)</span><br><span class="line">        print(num)</span><br><span class="line">        <span class="keyword">if</span> int(splited[<span class="number">0</span>])!=<span class="number">-1</span>:</span><br><span class="line">            lib = path + <span class="string">"\\train\\"</span>+photo</span><br><span class="line">            savepath=path+<span class="string">"\\output\\"</span>+str(category)+<span class="string">"\\"</span>+str(category)+<span class="string">"+"</span>+str(num)+<span class="string">".jpg"</span></span><br><span class="line">            num+=<span class="number">1</span></span><br><span class="line">            start(lib,savepath,splited[<span class="number">0</span>],splited[<span class="number">1</span>])</span><br></pre></td></tr></table></figure></p>
+<h2 id="将图片转化为对应的xml文件"><a href="#将图片转化为对应的xml文件" class="headerlink" title="将图片转化为对应的xml文件"></a>将图片转化为对应的xml文件</h2><p>默认的边框大小为整个图片的d、长度和宽度可以从图片中获取、最终批量的生成xml文件（突然想起比赛的图片切分后生成的30万个文件、还只能分批次的复制、一复制就卡屏、迷醉、、）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"><span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="comment">#根据实际来添加class</span></span><br><span class="line">list=[<span class="string">"class1"</span>,<span class="string">"class2"</span>]</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> list:</span><br><span class="line">    path=os.getcwd()</span><br><span class="line">    <span class="comment">#图像存储位置</span></span><br><span class="line">    src_img_dir = path+<span class="string">"\\input2\\"</span>+a</span><br><span class="line">    <span class="comment"># xml文件存放位置</span></span><br><span class="line">    src_xml_dir = path+<span class="string">"\\input2\\"</span>+a</span><br><span class="line">    img_Lists = glob.glob(src_img_dir + <span class="string">'\*.jpg'</span>)</span><br><span class="line">    img_basenames = [] </span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> img_Lists:</span><br><span class="line">        img_basenames.append(os.path.basename(item))</span><br><span class="line">    img_names = [] </span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> img_basenames:</span><br><span class="line">        temp1, temp2 = os.path.splitext(item)</span><br><span class="line">        img_names.append(temp1)</span><br><span class="line">    <span class="keyword">for</span> img <span class="keyword">in</span> img_names:</span><br><span class="line">        im = Image.open((src_img_dir + <span class="string">'/'</span> + img + <span class="string">'.jpg'</span>))</span><br><span class="line">        width, height = im.size</span><br><span class="line">        xml_file = open((src_xml_dir + <span class="string">'/'</span> + img + <span class="string">'.xml'</span>), <span class="string">'w'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'&lt;annotation&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'    &lt;folder&gt;'</span>+a+<span class="string">'&lt;/folder&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'    &lt;filename&gt;'</span> + str(img) + <span class="string">'.jpg'</span> + <span class="string">'&lt;/filename&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'    &lt;path&gt;'</span> + path +<span class="string">"\\input2\\"</span>+a+<span class="string">"\\"</span>+ str(img) + <span class="string">'.jpg'</span>+ <span class="string">'&lt;/path&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'    &lt;size&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;width&gt;'</span> + str(width) + <span class="string">'&lt;/width&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;height&gt;'</span> + str(height) + <span class="string">'&lt;/height&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;depth&gt;3&lt;/depth&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'    &lt;/size&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;segmented&gt;0&lt;/segmented&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'    &lt;object&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;name&gt;'</span> + str(img) + <span class="string">'&lt;/name&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;pose&gt;Unspecified&lt;/pose&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;truncated&gt;1&lt;/truncated&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;difficult&gt;0&lt;/difficult&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;bndbox&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'            &lt;xmin&gt;'</span> + <span class="string">"0"</span> + <span class="string">'&lt;/xmin&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'            &lt;ymin&gt;'</span> + <span class="string">"0"</span> + <span class="string">'&lt;/ymin&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'            &lt;xmax&gt;'</span> + str(width) + <span class="string">'&lt;/xmax&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'            &lt;ymax&gt;'</span> + str(height) + <span class="string">'&lt;/ymax&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'        &lt;/bndbox&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'    &lt;/object&gt;\n'</span>)</span><br><span class="line">        xml_file.write(<span class="string">'&lt;/annotation&gt;'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="xml转csv文件合并csv文件"><a href="#xml转csv文件合并csv文件" class="headerlink" title="xml转csv文件合并csv文件"></a>xml转csv文件合并csv文件</h2><p>要使用如下脚本将xml文件转化为csv文件、最后再把每个目录下的csv文件进行合并（注意删除重复的lable）<br>@echo off<br>E:<br>cd add<br>dir<br>copy *.csv all_keywords.csv<br>echo 合并成功！’<br>pause</p>
+<h2 id="调用object-detection前的准备"><a href="#调用object-detection前的准备" class="headerlink" title="调用object_detection前的准备"></a>调用object_detection前的准备</h2><p>下面是很有参考性的博客和官方的地址<br><a href="https://blog.csdn.net/honk2012/article/details/79099651" target="_blank" rel="noopener">https://blog.csdn.net/honk2012/article/details/79099651</a><br><a href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md" target="_blank" rel="noopener">https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md</a><br>可以翻墙的话推荐下面这篇、这个towardsdatascience还是很不错的<br><a href="https://towardsdatascience.com/how-to-train-your-own-object-detector-with-tensorflows-object-detector-api-bec72ecfe1d9" target="_blank" rel="noopener">https://towardsdatascience.com/how-to-train-your-own-object-detector-with-tensorflows-object-detector-api-bec72ecfe1d9</a><br>基本后面的训练和模型的调用都是在github上的、想普通的个人电脑用ssd的一个mobile就行了、别的根本跑不动、batch设置的越大每次迭代的时间越长、如果太大电脑配置不够的话你就可以重新开机了、、<br>顺便说说几个坑官方步骤中的 protoc object_detection/protos/*.proto –python_out=. 如果是在window下要下载3.4版本的3.5会有bug<br>object_detection初始化一定要先执行、不然会给你各种报错、、<br>官方文档中export PYTHONPATH=$PYTHONPATH:<code>pwd</code>:<code>pwd</code>/slim  如果是windows下执行要用这个命令(查了很久用了很多的坑爹方法、只能说项目对windows不友好)SET PYTHONPATH=%cd%;%cd%\slim  执行目录还是不变<br>注意这几个坑基本就会很顺畅了、还有一些其他小坑一时想不起来、想到了再加、</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/04/08/2018-4-8/">定点识别</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
+        <p><span>发布时间:</span>2018年04月08日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年04月15日 - 19时15分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/08/2018-4-8/" title="定点识别">www.shadowerli.com/2018/04/08/2018-4-8/</a>
+            <span class="copy-path" data-clipboard-text="原文: www.shadowerli.com/2018/04/08/2018-4-8/　　作者: Shadowerli" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a  href="/2018/03/23/2018-3-23/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">博客搬家</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#根据lable切分图片"><span class="toc-number">1.</span> <span class="toc-text">根据lable切分图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将图片转化为对应的xml文件"><span class="toc-number">2.</span> <span class="toc-text">将图片转化为对应的xml文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml转csv文件合并csv文件"><span class="toc-number">3.</span> <span class="toc-text">xml转csv文件合并csv文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用object-detection前的准备"><span class="toc-number">4.</span> <span class="toc-text">调用object_detection前的准备</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/03/23/2018-3-23/" title="下一篇: 博客搬家">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/22/2018-1-22/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/2017-12-27/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/26/2017-12-26/">杂记</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 LMX
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">theme by hexo &nbsp;&nbsp;</a>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 4;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

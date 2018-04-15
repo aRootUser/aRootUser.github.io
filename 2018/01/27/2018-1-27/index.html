@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>数据集生成器 | welcome to my blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="运用java来实现自定义的数据集">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据集生成器">
+<meta property="og:url" content="www.shadowerli.com/2018/01/27/2018-1-27/index.html">
+<meta property="og:site_name" content="welcome to my blog">
+<meta property="og:description" content="运用java来实现自定义的数据集">
+<meta property="og:updated_time" content="2018-03-23T11:57:20.735Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据集生成器">
+<meta name="twitter:description" content="运用java来实现自定义的数据集">
+  
+    <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Shadowerli</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                            <li><a  href="/categories/大数据">大数据</a></li>
+                        
+                            <li><a  href="/categories/深度学习">深度学习</a></li>
+                        
+                            <li><a  href="/categories/机器学习">机器学习</a></li>
+                        
+                            <li><a  href="/categories/other">其他</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                            
+                                <a class="fl facebook"  target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/cnn/" style="font-size: 10px;">cnn</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/other/" style="font-size: 20px;">other</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.shadowerli.com/about">想互相添加友链的邮箱联系、广告除外</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://qiuri.org">秋日的博客</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Shadowerli</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Shadowerli</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                    <li><a href="/categories/大数据">大数据</a></li>
+                
+                    <li><a href="/categories/深度学习">深度学习</a></li>
+                
+                    <li><a href="/categories/机器学习">机器学习</a></li>
+                
+                    <li><a href="/categories/other">其他</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2018-1-27" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/01/27/2018-1-27/" class="article-date">
+      <time datetime="2018-01-26T16:00:00.000Z" itemprop="datePublished">2018-01-27</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据集生成器
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/大数据/">大数据</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>运用java来实现自定义的数据集<br><a id="more"></a></excerpt></p>
+<p>使用说明这是一个用java写的用户自定义数据集生成器、目前只支持日期用户名和用户标识三个字段、由于是1.0版本功能比较少、<br>为了满足大数据自定义的数据来源将继续开发(今天玩spark竟找不到想要的数据集、、)、整个项目已经发布在github上、程序的入口在main class、<br>运行时要先配置好setting.properties在里面要定义好所需要的字段的种类数、注意输入必须为大于等于1的正整数、并且sum的值至少为6、<br>运行成功后将在相对路径下生成result数据集、有空会用python来重写整个项目(有空练练python、其实也是挺好玩的)、项目难度不大具体源码的介绍如下、<br>程序定义4个类分别为主类、日期类、标识类、用户id类、初始化自定义数量后通过三个类返回的容器进行汇总、最后通过文本文件输出<br>目前需要改进的地方：日期库、、程序写死了还不能实现真正意义上的用户自定义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mainclass</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> idnum ;   	<span class="comment">//定义不同id的个数</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> flagnum ; 	<span class="comment">//定义不同行为标记的个数</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> sum ;      	<span class="comment">//定义数据集的总行数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//初始化成员变量</span></span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		ResourceBundle set=ResourceBundle.getBundle(<span class="string">"setting"</span>);</span><br><span class="line">		idnum=Integer.parseInt(set.getString(<span class="string">"idnum"</span>));</span><br><span class="line">		flagnum=Integer.parseInt(set.getString(<span class="string">"flagnum"</span>));</span><br><span class="line">		sum=Integer.parseInt(set.getString(<span class="string">"sum"</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">		ArrayList&lt;String&gt; flager= <span class="keyword">new</span> Flag(flagnum,sum).create();</span><br><span class="line">		ArrayList&lt;String&gt; dater= <span class="keyword">new</span> Data(sum).create();</span><br><span class="line">		ArrayList&lt;String&gt; ider= <span class="keyword">new</span> Id(idnum,sum).create();</span><br><span class="line">		ArrayList&lt;String&gt; result= <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将所有结果进行横向组合</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=sum-<span class="number">1</span>;i++) &#123;</span><br><span class="line">			result.add(dater.get(i)+<span class="string">"    "</span>+ider.get(i)+<span class="string">"    "</span>+flager.get(i));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//在相对路径下生成结果文件</span></span><br><span class="line">		BufferedWriter bw=<span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"result.txt"</span>));</span><br><span class="line">		Iterator&lt;String&gt; it = result.iterator();  </span><br><span class="line">	        <span class="keyword">while</span>(it.hasNext())&#123;  </span><br><span class="line">	            bw.write(it.next());</span><br><span class="line">	            bw.newLine();</span><br><span class="line">	            bw.flush();</span><br><span class="line">	        &#125; </span><br><span class="line">        bw.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Data</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum;</span><br><span class="line">	Data(<span class="keyword">int</span> sum)&#123;</span><br><span class="line">		<span class="keyword">this</span>.sum=sum;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;String&gt; data=<span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		<span class="comment">//自定义日期库</span></span><br><span class="line">		String datasort[]= &#123;<span class="string">"2018-1-1"</span>,<span class="string">"2018-1-2"</span>,<span class="string">"2018-1-3"</span>,<span class="string">"2018-1-4"</span>,<span class="string">"2018-1-5"</span>,<span class="string">"2018-1-6"</span>&#125;;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">int</span>  avg=sum/<span class="number">6</span>;                        <span class="comment">//定义一个数来平均分配日期</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>,i=-<span class="number">1</span>;a&lt;=sum-<span class="number">1</span>;a++)&#123;       <span class="comment">//因为0是必定可以被整除的所以i初始值为-1</span></span><br><span class="line">				<span class="keyword">if</span>(a%avg==<span class="number">0</span>) &#123;</span><br><span class="line">					i++;</span><br><span class="line">				&#125;</span><br><span class="line">			<span class="keyword">if</span>(i&gt;<span class="number">5</span>)&#123;i=<span class="number">5</span>;&#125;</span><br><span class="line">			data.add(String.valueOf(datasort[i]));	<span class="comment">//日期库从0开始</span></span><br><span class="line">		    &#125;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			System.out.println(e.getMessage()+<span class="string">"sum的值至少为6"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> data;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Flag</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> flagnum;</span><br><span class="line">	<span class="keyword">int</span> sum;</span><br><span class="line">	String nameid;</span><br><span class="line">	Flag(<span class="keyword">int</span> flagnum,<span class="keyword">int</span> sum)&#123;</span><br><span class="line">		<span class="keyword">this</span>.flagnum=flagnum;</span><br><span class="line">		<span class="keyword">this</span>.sum=sum;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;String&gt; list=<span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		<span class="comment">//存放生成的名字</span></span><br><span class="line">	    String name[]=<span class="keyword">new</span> String[flagnum];</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>;a&lt;=flagnum-<span class="number">1</span>;a++) &#123;</span><br><span class="line">	    	<span class="comment">//从0开始定义flag</span></span><br><span class="line">	    	nameid=String.valueOf(a);</span><br><span class="line">	    	name[a]=nameid;</span><br><span class="line">	    &#125;</span><br><span class="line">		<span class="comment">//根据名字组合随机生成id  </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>;a&lt;=sum-<span class="number">1</span>;a++) &#123;</span><br><span class="line">			list.add(name[(<span class="keyword">int</span>)(Math.random()*flagnum)]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span>  list;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Id</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> idnum;<span class="comment">//不同名字的数量</span></span><br><span class="line">	<span class="keyword">int</span> sum;</span><br><span class="line">	String nameid;</span><br><span class="line">	Id(<span class="keyword">int</span> idnum,<span class="keyword">int</span> sum)&#123;</span><br><span class="line">		<span class="keyword">this</span>.idnum=idnum;</span><br><span class="line">		<span class="keyword">this</span>.sum=sum;		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ArrayList&lt;String&gt; <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;String&gt; list=<span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		<span class="comment">//存放生成的名字</span></span><br><span class="line">	    String name[]=<span class="keyword">new</span> String[idnum];</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>;a&lt;=idnum-<span class="number">1</span>;a++) &#123;</span><br><span class="line">	    	<span class="comment">//生成随机生成的名字组合</span></span><br><span class="line">	    	nameid=String.valueOf((<span class="keyword">char</span>)(<span class="keyword">int</span>)(<span class="number">97</span>+Math.random()*<span class="number">26</span>))+</span><br><span class="line">	    	String.valueOf((<span class="keyword">char</span>)(<span class="keyword">int</span>)(<span class="number">97</span>+Math.random()*<span class="number">26</span>))+</span><br><span class="line">	    	String.valueOf((<span class="keyword">char</span>)(<span class="keyword">int</span>)(<span class="number">97</span>+Math.random()*<span class="number">26</span>));</span><br><span class="line">	    	name[a]=nameid;</span><br><span class="line">	    &#125;</span><br><span class="line">		<span class="comment">//根据名字组合随机生成id  </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">0</span>;a&lt;=sum-<span class="number">1</span>;a++) &#123;</span><br><span class="line">			list.add(name[(<span class="keyword">int</span>)(Math.random()*idnum)]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span>  list;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"> <span class="comment">//setting配置文件来定义数据集</span></span><br><span class="line"> <span class="comment">//————————————————————— </span></span><br><span class="line"> <span class="comment">//setting.properties</span></span><br><span class="line"> <span class="comment">//idnum=2</span></span><br><span class="line"> <span class="comment">//flagnum=3</span></span><br><span class="line"> <span class="comment">//sum=10</span></span><br><span class="line"> <span class="comment">//————————————————————</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/01/27/2018-1-27/">数据集生成器</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
+        <p><span>发布时间:</span>2018年01月27日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年03月23日 - 19时57分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/27/2018-1-27/" title="数据集生成器">www.shadowerli.com/2018/01/27/2018-1-27/</a>
+            <span class="copy-path" data-clipboard-text="原文: www.shadowerli.com/2018/01/27/2018-1-27/　　作者: Shadowerli" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2018/01/30/2018-1-30/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          K-近邻算法Python实现
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2018/01/22/2018-1-22/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java动态代理</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2018/01/30/2018-1-30/" title="上一篇: K-近邻算法Python实现">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/01/22/2018-1-22/" title="下一篇: Java动态代理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/22/2018-1-22/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/2017-12-27/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/26/2017-12-26/">杂记</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 LMX
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">theme by hexo &nbsp;&nbsp;</a>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 4;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

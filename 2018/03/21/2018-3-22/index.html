@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>基于卷积的图片识别 | welcome to my blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇博客主要介绍通过Tesorflow来实现对图片的识别">
+<meta name="keywords" content="cnn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于卷积的图片识别">
+<meta property="og:url" content="www.shadowerli.com/2018/03/21/2018-3-22/index.html">
+<meta property="og:site_name" content="welcome to my blog">
+<meta property="og:description" content="这篇博客主要介绍通过Tesorflow来实现对图片的识别">
+<meta property="og:updated_time" content="2018-03-28T13:13:47.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于卷积的图片识别">
+<meta name="twitter:description" content="这篇博客主要介绍通过Tesorflow来实现对图片的识别">
+  
+    <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Shadowerli</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                            <li><a  href="/categories/大数据">大数据</a></li>
+                        
+                            <li><a  href="/categories/深度学习">深度学习</a></li>
+                        
+                            <li><a  href="/categories/机器学习">机器学习</a></li>
+                        
+                            <li><a  href="/categories/other">其他</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                            
+                                <a class="fl facebook"  target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/cnn/" style="font-size: 10px;">cnn</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/other/" style="font-size: 20px;">other</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.shadowerli.com/about">想互相添加友链的邮箱联系、广告除外</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://qiuri.org">秋日的博客</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Shadowerli</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Shadowerli</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                    <li><a href="/categories/大数据">大数据</a></li>
+                
+                    <li><a href="/categories/深度学习">深度学习</a></li>
+                
+                    <li><a href="/categories/机器学习">机器学习</a></li>
+                
+                    <li><a href="/categories/other">其他</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2018-3-22" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/03/21/2018-3-22/" class="article-date">
+      <time datetime="2018-03-20T16:00:00.000Z" itemprop="datePublished">2018-03-21</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于卷积的图片识别
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cnn/">cnn</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>这篇博客主要介绍通过Tesorflow来实现对图片的识别<br><a id="more"></a></excerpt></p>
+<p>学习深度学习断断续续也将近半年了、从去年暑假接触tensorflow一步步从入门到放弃、又继续现在才算明白每一步做的是什么、本来想深入研究词向量分析做一个在线翻译的小项目和属于自己的siri（这一定非常cool）、在导师的建议下先从图像识别做起、语义模型的确太复杂了只能怪中国语言博大精深（笑死、、）可能做了一两年最终的结果将会出乎意料的喜感、不得不赞叹一下油管、、在线翻译实在是太强大了要是哪天能在谷歌工作就好了、不知不觉敲了好多废话、该写总结了<br>以下是写的很详细详细的链接、看不懂的可以再细细的看这个链接看个权重的动态图就行了、绝对精髓<br><a href="https://www.2cto.com/kf/201607/522441.html" target="_blank" rel="noopener">https://www.2cto.com/kf/201607/522441.html</a></p>
+<p>首先从输入的图片开始、mnist是28x28的单颜色通道的图片、训练时读取的是[batchsize,784]的数组、要转化为tensorflow卷积支持的输入格式[batchsize,28,28,1]、第二、三个表示几乘几的图片、最后一个表示颜色通道、这里为1因为是灰度图、接下来定义卷积的权重、就是你要定义一个移动的的过滤器来扫描这个图片以及若干个内核来存储扫描器与图片权值相乘再加上偏置值的一个结果、最终就可以得到卷积层的输出、需要定义的参数参考这篇博客十分的详细<br><a href="https://www.cnblogs.com/qggg/p/6832342.html" target="_blank" rel="noopener">https://www.cnblogs.com/qggg/p/6832342.html</a></p>
+<p>卷积层得到输入后将其导入池化层、池化层大大减小了变量的个数（真的十分敬佩模型的创始人、真的太厉害了）、池化层也有类似的过滤器如果用的是max_pool相当于扫描一个区域、选出区域中最大的一个值输出、按照步长移动再扫描输出、从而最终达到简化参数的目的、池化层输出后将结果导入全连结层、然后就是固定的套路了、</p>
+<p>具体代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mnist=input_data.read_data_sets(<span class="string">"MNIST_data"</span>,one_hot=<span class="keyword">True</span>)</span><br><span class="line">batch_size=<span class="number">100</span></span><br><span class="line">n_batch=mnist.train.num_examples//batch_size</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">weight_init</span><span class="params">(shape)</span>:</span></span><br><span class="line">    init=tf.truncated_normal(shape=shape,stddev=<span class="number">0.1</span>)</span><br><span class="line">    <span class="keyword">return</span> tf.Variable(init)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bias_init</span><span class="params">(shape)</span>:</span></span><br><span class="line">    init=tf.constant(<span class="number">0.1</span>,shape=shape)</span><br><span class="line">    <span class="keyword">return</span>  tf.Variable(init)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conv2d</span><span class="params">(input,w)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.conv2d(input,w,strides=[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],padding=<span class="string">'SAME'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pool</span><span class="params">(input)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.max_pool(input,ksize=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>],strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>],padding=<span class="string">'SAME'</span>)</span><br><span class="line"></span><br><span class="line">x=tf.placeholder(tf.float32,[<span class="keyword">None</span>,<span class="number">784</span>])</span><br><span class="line">y=tf.placeholder(tf.float32,[<span class="keyword">None</span>,<span class="number">10</span>])</span><br><span class="line"><span class="comment">#全0填充从一开始移动</span></span><br><span class="line">input=tf.reshape(x,[<span class="number">-1</span>,<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>])</span><br><span class="line"><span class="comment">#定义卷积的深度为32</span></span><br><span class="line"><span class="comment">#第一层卷积的输入[128,28,28,1]</span></span><br><span class="line">w_conv1=weight_init([<span class="number">5</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">16</span>])</span><br><span class="line">b_conv1=weight_init([<span class="number">16</span>])</span><br><span class="line"><span class="comment">#定义的是same有0来填充每次管道的核心将会一次经过每个像素点</span></span><br><span class="line">conv1=tf.nn.relu(conv2d(input,w_conv1)+b_conv1)</span><br><span class="line"><span class="comment">#第一层卷积输出[128,28,28,16]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#池化层只在指定的2，3维度上进行池化</span></span><br><span class="line"><span class="comment">#得到池化层的输出[128,14,14,16]</span></span><br><span class="line">pool1=pool(conv1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#对应池化层的输出所以第三位为32此处定义深度为64</span></span><br><span class="line">w_conv2=weight_init([<span class="number">5</span>,<span class="number">5</span>,<span class="number">16</span>,<span class="number">64</span>])</span><br><span class="line">b_conv2=weight_init([<span class="number">64</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#卷积的输出[128,14,14,64]</span></span><br><span class="line">conv2=tf.nn.relu(conv2d(pool1,w_conv2)+b_conv2)</span><br><span class="line"><span class="comment">#得到池化的最终输出[128,7,7,64]</span></span><br><span class="line">pool2=pool(conv2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义全连结层的权重</span></span><br><span class="line">weight=weight_init([<span class="number">7</span>*<span class="number">7</span>*<span class="number">64</span>,<span class="number">500</span>])</span><br><span class="line">bias=bias_init([<span class="number">500</span>])</span><br><span class="line"></span><br><span class="line">normal=tf.reshape(pool2,[<span class="number">-1</span>,<span class="number">7</span>*<span class="number">7</span>*<span class="number">64</span>])</span><br><span class="line"><span class="comment">#[-1,1024]</span></span><br><span class="line">output1=tf.nn.relu(tf.matmul(normal,weight)+bias)</span><br><span class="line">keep=tf.placeholder(tf.float32)</span><br><span class="line"><span class="comment">#定义dropout防止过拟合对提高准确率有很大的帮助</span></span><br><span class="line">drop=tf.nn.dropout(output1,keep)</span><br><span class="line"></span><br><span class="line">weight2=weight_init([<span class="number">500</span>,<span class="number">10</span>])</span><br><span class="line">bias2=bias_init([<span class="number">10</span>])</span><br><span class="line"><span class="comment">#最终得到的输出数组的每一个权值不一定是0，1、Softmax然后会正则化这些权重值、使它们的总和等于1、以此构造一个有效的概率分布</span></span><br><span class="line">prediction=tf.nn.softmax(tf.matmul(drop,weight2)+bias2)</span><br><span class="line"></span><br><span class="line">cross_entropy=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y,logits=prediction))</span><br><span class="line"><span class="comment">#这里用AdamOptimizer的效果要比梯度下降要好</span></span><br><span class="line">train_step=tf.train.AdamOptimizer(<span class="number">1e-4</span>).minimize(cross_entropy)</span><br><span class="line">correct_prediction=tf.equal(tf.arg_max(prediction,<span class="number">1</span>),tf.arg_max(y,<span class="number">1</span>))</span><br><span class="line">accuracy=tf.reduce_mean(tf.cast(correct_prediction,tf.float32))</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">        <span class="keyword">for</span> batch <span class="keyword">in</span> range(<span class="number">50</span>):</span><br><span class="line">            batch_xs,batch_ys =mnist.train.next_batch(batch_size)</span><br><span class="line">            sess.run(train_step,feed_dict=&#123;x:batch_xs,y:batch_ys,keep:<span class="number">0.7</span>&#125;)</span><br><span class="line">        acc=sess.run(accuracy,feed_dict=&#123;x:mnist.test.images,y:mnist.test.labels,keep:<span class="number">1.0</span>&#125;)</span><br><span class="line">        print(<span class="string">'iter'</span>+str(epoch)+<span class="string">"  correct "</span>+str(acc))</span><br><span class="line">    input_image = mnist.train.images[<span class="number">11</span>:<span class="number">12</span>]</span><br><span class="line">    <span class="comment"># 可视化卷积层学习到的特征</span></span><br><span class="line">    <span class="comment"># 输入一张图片</span></span><br><span class="line">    cnn1=sess.run(w_conv1, feed_dict=&#123;x:input_image&#125;)</span><br><span class="line">    conv1_reshape = sess.run(tf.reshape(cnn1, [<span class="number">5</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">16</span>]))</span><br><span class="line">    plt.figure()</span><br><span class="line">    <span class="comment"># 放在两行两列第一个位置#将舍去数组的后两位</span></span><br><span class="line">    plt.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 将舍去数组的后两位</span></span><br><span class="line">    plt.imshow(conv1_reshape[:,:,<span class="number">0</span>,<span class="number">0</span>])</span><br><span class="line">    plt.title(<span class="string">'Conv1 16x28x28'</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>下面是一篇关于交叉熵的问题的博客<br><a href="http://blog.csdn.net/john_xyz/article/details/61211422" target="_blank" rel="noopener">http://blog.csdn.net/john_xyz/article/details/61211422</a><br>笔记本配置比较一般、渴望gpu来拯救、由于训练的比较慢又要不断调整参数最终准确率在97%以上是没问题的</p>
+<h2 id="图像识别"><a href="#图像识别" class="headerlink" title="图像识别"></a>图像识别</h2><p>一般做图像识别用到的模型在github上都开源出来了、比如inception3就有基于Tensorflow的了、用inception3训练自己模型时卷积层的参数大致是不变的改变的是顶部神经元的参数<br>前面的操作差不多做的是特征提取、所以用自己的数据训练后得到的结果还是不错的、<br>下面是谷歌物体识别的连接、下面的模型可以拿来直接用不用自己一层一层搭网络、里面也有已经训练好的模型(当自己想要做点什么的时候谷歌都做好了、、、)<br><a href="https://github.com/tensorflow/models/tree/master/research/object_detection" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/research/object_detection</a><br>环境搭建推荐linux、windows的坑太多浪费了好长时间、官方给的教程十分精辟、要注意每次敲命令行要严格！！！对应注释中给的目录<br>最后还可以训练自己的数据集、教程官方github上也有、网上的教程也十分多参照一下就好了（不想再做验证性工作了）、、</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
+        <p><span>发布时间:</span>2018年03月21日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年03月28日 - 21时13分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/03/21/2018-3-22/" title="基于卷积的图片识别">www.shadowerli.com/2018/03/21/2018-3-22/</a>
+            <span class="copy-path" data-clipboard-text="原文: www.shadowerli.com/2018/03/21/2018-3-22/　　作者: Shadowerli" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2018/03/23/2018-3-23/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          博客搬家
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2018/02/22/2018-2-22/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java Future</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图像识别"><span class="toc-number">1.</span> <span class="toc-text">图像识别</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2018/03/23/2018-3-23/" title="上一篇: 博客搬家">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/02/22/2018-2-22/" title="下一篇: Java Future">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/22/2018-1-22/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/2017-12-27/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/26/2017-12-26/">杂记</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 LMX
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">theme by hexo &nbsp;&nbsp;</a>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 4;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
