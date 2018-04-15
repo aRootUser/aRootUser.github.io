@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="www.shadowerli.com/"/>
+  <link href="shadowerli.com/"/>
   <updated>2018-04-15T11:15:44.015Z</updated>
-  <id>www.shadowerli.com/</id>
+  <id>shadowerli.com/</id>
   
   <author>
     <name>Shadowerli</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>定点识别</title>
-    <link href="www.shadowerli.com/2018/04/08/2018-4-8/"/>
-    <id>www.shadowerli.com/2018/04/08/2018-4-8/</id>
+    <link href="shadowerli.com/2018/04/08/2018-4-8/"/>
+    <id>shadowerli.com/2018/04/08/2018-4-8/</id>
     <published>2018-04-07T16:00:00.000Z</published>
     <updated>2018-04-15T11:15:44.015Z</updated>
     
@@ -31,17 +31,17 @@
     
     </summary>
     
-      <category term="深度识别" scheme="www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E8%AF%86%E5%88%AB/"/>
+      <category term="深度识别" scheme="shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E8%AF%86%E5%88%AB/"/>
     
     
-      <category term="深度学习" scheme="www.shadowerli.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="shadowerli.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>博客搬家</title>
-    <link href="www.shadowerli.com/2018/03/23/2018-3-23/"/>
-    <id>www.shadowerli.com/2018/03/23/2018-3-23/</id>
+    <link href="shadowerli.com/2018/03/23/2018-3-23/"/>
+    <id>shadowerli.com/2018/03/23/2018-3-23/</id>
     <published>2018-03-22T16:00:00.000Z</published>
     <updated>2018-03-23T12:26:30.917Z</updated>
     
@@ -53,17 +53,17 @@
     
     </summary>
     
-      <category term="other" scheme="www.shadowerli.com/categories/other/"/>
+      <category term="other" scheme="shadowerli.com/categories/other/"/>
     
     
-      <category term="other" scheme="www.shadowerli.com/tags/other/"/>
+      <category term="other" scheme="shadowerli.com/tags/other/"/>
     
   </entry>
   
   <entry>
     <title>基于卷积的图片识别</title>
-    <link href="www.shadowerli.com/2018/03/21/2018-3-22/"/>
-    <id>www.shadowerli.com/2018/03/21/2018-3-22/</id>
+    <link href="shadowerli.com/2018/03/21/2018-3-22/"/>
+    <id>shadowerli.com/2018/03/21/2018-3-22/</id>
     <published>2018-03-20T16:00:00.000Z</published>
     <updated>2018-03-28T13:13:47.944Z</updated>
     
@@ -75,17 +75,17 @@
     
     </summary>
     
-      <category term="深度学习" scheme="www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="cnn" scheme="www.shadowerli.com/tags/cnn/"/>
+      <category term="cnn" scheme="shadowerli.com/tags/cnn/"/>
     
   </entry>
   
   <entry>
     <title>Java Future</title>
-    <link href="www.shadowerli.com/2018/02/22/2018-2-22/"/>
-    <id>www.shadowerli.com/2018/02/22/2018-2-22/</id>
+    <link href="shadowerli.com/2018/02/22/2018-2-22/"/>
+    <id>shadowerli.com/2018/02/22/2018-2-22/</id>
     <published>2018-02-21T16:00:00.000Z</published>
     <updated>2018-04-02T15:10:08.570Z</updated>
     
@@ -97,15 +97,15 @@
     
     </summary>
     
-      <category term="大数据" scheme="www.shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
   </entry>
   
   <entry>
     <title>Lstm入门</title>
-    <link href="www.shadowerli.com/2018/02/10/2018-2-10/"/>
-    <id>www.shadowerli.com/2018/02/10/2018-2-10/</id>
+    <link href="shadowerli.com/2018/02/10/2018-2-10/"/>
+    <id>shadowerli.com/2018/02/10/2018-2-10/</id>
     <published>2018-02-09T16:00:00.000Z</published>
     <updated>2018-03-24T02:06:49.539Z</updated>
     
@@ -117,17 +117,17 @@
     
     </summary>
     
-      <category term="深度学习" scheme="www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="tensorflow" scheme="www.shadowerli.com/tags/tensorflow/"/>
+      <category term="tensorflow" scheme="shadowerli.com/tags/tensorflow/"/>
     
   </entry>
   
   <entry>
     <title>K-近邻算法Python实现</title>
-    <link href="www.shadowerli.com/2018/01/30/2018-1-30/"/>
-    <id>www.shadowerli.com/2018/01/30/2018-1-30/</id>
+    <link href="shadowerli.com/2018/01/30/2018-1-30/"/>
+    <id>shadowerli.com/2018/01/30/2018-1-30/</id>
     <published>2018-01-29T16:00:00.000Z</published>
     <updated>2018-03-24T02:07:57.455Z</updated>
     
@@ -139,17 +139,17 @@
     
     </summary>
     
-      <category term="机器学习" scheme="www.shadowerli.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="shadowerli.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="python" scheme="www.shadowerli.com/tags/python/"/>
+      <category term="python" scheme="shadowerli.com/tags/python/"/>
     
   </entry>
   
   <entry>
     <title>数据集生成器</title>
-    <link href="www.shadowerli.com/2018/01/27/2018-1-27/"/>
-    <id>www.shadowerli.com/2018/01/27/2018-1-27/</id>
+    <link href="shadowerli.com/2018/01/27/2018-1-27/"/>
+    <id>shadowerli.com/2018/01/27/2018-1-27/</id>
     <published>2018-01-26T16:00:00.000Z</published>
     <updated>2018-03-23T11:57:20.735Z</updated>
     
@@ -161,17 +161,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="www.shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="java" scheme="www.shadowerli.com/tags/java/"/>
+      <category term="java" scheme="shadowerli.com/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>Java动态代理</title>
-    <link href="www.shadowerli.com/2018/01/22/2018-1-22/"/>
-    <id>www.shadowerli.com/2018/01/22/2018-1-22/</id>
+    <link href="shadowerli.com/2018/01/22/2018-1-22/"/>
+    <id>shadowerli.com/2018/01/22/2018-1-22/</id>
     <published>2018-01-21T16:00:00.000Z</published>
     <updated>2018-03-23T11:57:08.078Z</updated>
     
@@ -183,17 +183,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="www.shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="java" scheme="www.shadowerli.com/tags/java/"/>
+      <category term="java" scheme="shadowerli.com/tags/java/"/>
     
   </entry>
   
   <entry>
     <title>基本神经网络</title>
-    <link href="www.shadowerli.com/2017/12/27/2017-12-27/"/>
-    <id>www.shadowerli.com/2017/12/27/2017-12-27/</id>
+    <link href="shadowerli.com/2017/12/27/2017-12-27/"/>
+    <id>shadowerli.com/2017/12/27/2017-12-27/</id>
     <published>2017-12-26T16:00:00.000Z</published>
     <updated>2018-04-02T15:09:03.336Z</updated>
     
@@ -205,17 +205,17 @@
     
     </summary>
     
-      <category term="深度学习" scheme="www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="深度学习" scheme="www.shadowerli.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+      <category term="深度学习" scheme="shadowerli.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>杂记</title>
-    <link href="www.shadowerli.com/2017/12/26/2017-12-26/"/>
-    <id>www.shadowerli.com/2017/12/26/2017-12-26/</id>
+    <link href="shadowerli.com/2017/12/26/2017-12-26/"/>
+    <id>shadowerli.com/2017/12/26/2017-12-26/</id>
     <published>2017-12-25T16:00:00.000Z</published>
     <updated>2018-04-15T11:04:23.520Z</updated>
     
@@ -227,10 +227,10 @@
     
     </summary>
     
-      <category term="other" scheme="www.shadowerli.com/categories/other/"/>
+      <category term="other" scheme="shadowerli.com/categories/other/"/>
     
     
-      <category term="other" scheme="www.shadowerli.com/tags/other/"/>
+      <category term="other" scheme="shadowerli.com/tags/other/"/>
     
   </entry>
   
