@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://www.shadowerli.com/2017/12/26/2017-12-26/</loc>
-    <lastmod>2018-04-25T10:53:44.404Z</lastmod>
+    <lastmod>2018-05-03T12:48:45.784Z</lastmod>
     <data>
         <display>
         <title>杂记</title>
@@ -17,6 +17,46 @@
            
              
               <breadCrumb title="other" url="https://www.shadowerli.com/categories/other/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.shadowerli.com/2018/05/03/2018-5-3%20/</loc>
+    <lastmod>2018-05-03T12:45:38.326Z</lastmod>
+    <data>
+        <display>
+        <title>安全检测</title>
+        <pubTime>2018-05-02T16:00:00.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="图像识别" url="https://www.shadowerli.com/categories/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.shadowerli.com/2018/04/08/2018-4-8/</loc>
+    <lastmod>2018-04-29T11:52:07.843Z</lastmod>
+    <data>
+        <display>
+        <title>定点识别</title>
+        <pubTime>2018-04-07T16:00:00.000Z</pubTime>
+        
+        <tag>图像识别</tag>
+         
+         
+           
+             
+              <breadCrumb title="深度学习" url="https://www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>
@@ -37,26 +77,6 @@
            
              
               <breadCrumb title="大数据" url="https://www.shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.shadowerli.com/2018/04/08/2018-4-8/</loc>
-    <lastmod>2018-04-16T06:56:56.245Z</lastmod>
-    <data>
-        <display>
-        <title>定点识别</title>
-        <pubTime>2018-04-07T16:00:00.000Z</pubTime>
-        
-        <tag>图像识别</tag>
-         
-         
-           
-             
-              <breadCrumb title="深度学习" url="https://www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>

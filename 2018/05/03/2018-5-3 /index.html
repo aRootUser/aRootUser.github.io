@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>安全检测 | welcome to my blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="某比赛要求在施工通过监控对没带安全帽的人进行报警">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全检测">
+<meta property="og:url" content="https://www.shadowerli.com/2018/05/03/2018-5-3 /index.html">
+<meta property="og:site_name" content="welcome to my blog">
+<meta property="og:description" content="某比赛要求在施工通过监控对没带安全帽的人进行报警">
+<meta property="og:updated_time" content="2018-05-03T12:45:38.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安全检测">
+<meta name="twitter:description" content="某比赛要求在施工通过监控对没带安全帽的人进行报警">
+  
+    <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Shadowerli</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                            <li><a  href="/categories/大数据">大数据</a></li>
+                        
+                            <li><a  href="/categories/深度学习">深度学习</a></li>
+                        
+                            <li><a  href="/categories/机器学习">机器学习</a></li>
+                        
+                            <li><a  href="/categories/other">其他</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                            
+                                <a class="fl facebook"  target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/cnn/" style="font-size: 10px;">cnn</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/other/" style="font-size: 20px;">other</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.shadowerli.com/about">想互相添加友链的邮箱联系、广告除外</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://qiuri.org">秋日的博客</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Shadowerli</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Shadowerli</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                    <li><a href="/categories/大数据">大数据</a></li>
+                
+                    <li><a href="/categories/深度学习">深度学习</a></li>
+                
+                    <li><a href="/categories/机器学习">机器学习</a></li>
+                
+                    <li><a href="/categories/other">其他</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2018-5-3 " class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/05/03/2018-5-3 /" class="article-date">
+      <time datetime="2018-05-02T16:00:00.000Z" itemprop="datePublished">2018-05-03</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      安全检测
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/图像识别/">图像识别</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>某比赛要求在施工通过监控对没带安全帽的人进行报警<br><a id="more"></a><br>先吐槽一下比赛的主办方、给的测试视屏画质极低拍摄极为敷衍、有些人连人眼都无法识别是否带了安全帽、这小小的比赛大概整了整个51假期吧、</excerpt></p>
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>这里主要提供一下思路、传统ssd(高配电脑fater-rcnn走起)+inception3、你可能会问为什么不直接用ssd进行二次训练就好了、我当初也是这么想的这不是很简单么、<br>然后我先把视频一帧帧的读取并转化成图像然后手动lable(这里有个问题就是一个图像中有多个人这样训练的时候会不会造成无法收敛？我觉得会有很大的影响)、<br>然后训练这个像打了码一样的图片(再次吐槽一下主办方)、结果连人都识别不出来！！！内心极度奔溃、然后就用了独创非主流方法</p>
+<h2 id="具体步骤-非主流方法请勿模仿、"><a href="#具体步骤-非主流方法请勿模仿、" class="headerlink" title="具体步骤(非主流方法请勿模仿、)"></a>具体步骤(非主流方法请勿模仿、)</h2><p>鉴于之前连人都识别出来的问题、我就直接调用ssd先去除人、然后对有戴和没戴安全帽的进行训练(通过inception3)、然后运行通过ssd的目标检测结果输入到inception3中进行判别<br>判别的结果传给之前的显示字符串然后进行输出、下面附上源码(目录与object_detection一致)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#视频的读取得到识别物体后显示出来</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> utils.app_utils <span class="keyword">import</span> FPS</span><br><span class="line"><span class="keyword">from</span> object_detection.utils <span class="keyword">import</span> label_map_util</span><br><span class="line"><span class="keyword">from</span> object_detection.utils <span class="keyword">import</span> visualization_utils <span class="keyword">as</span> vis_util</span><br><span class="line"></span><br><span class="line">CWD_PATH = os.getcwd()</span><br><span class="line"></span><br><span class="line">MODEL_NAME = <span class="string">'ssd_mobilenet_v1_coco_11_06_2017'</span></span><br><span class="line">PATH_TO_CKPT = os.path.join(CWD_PATH, <span class="string">'object_detection'</span>, MODEL_NAME, <span class="string">'frozen_inference_graph.pb'</span>)</span><br><span class="line">PATH_TO_LABELS = os.path.join(CWD_PATH, <span class="string">'object_detection'</span>, <span class="string">'data'</span>, <span class="string">'mscoco_label_map.pbtxt'</span>)</span><br><span class="line"></span><br><span class="line">NUM_CLASSES = <span class="number">2</span></span><br><span class="line">label_map = label_map_util.load_labelmap(PATH_TO_LABELS)</span><br><span class="line"></span><br><span class="line">categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES,</span><br><span class="line">                                                            use_display_name=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">category_index = label_map_util.create_category_index(categories)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detect_objects</span><span class="params">(image_np, sess, detection_graph)</span>:</span></span><br><span class="line">    <span class="comment"># 增加输入图像的维度: [1, None, None, 3]</span></span><br><span class="line">    image_np_expanded = np.expand_dims(image_np, axis=<span class="number">0</span>)</span><br><span class="line">    image_tensor = detection_graph.get_tensor_by_name(<span class="string">'image_tensor:0'</span>)</span><br><span class="line">    <span class="comment"># 得到检测框</span></span><br><span class="line">    boxes = detection_graph.get_tensor_by_name(<span class="string">'detection_boxes:0'</span>)</span><br><span class="line">    <span class="comment">#得到他的得分</span></span><br><span class="line">    scores = detection_graph.get_tensor_by_name(<span class="string">'detection_scores:0'</span>)</span><br><span class="line">    classes = detection_graph.get_tensor_by_name(<span class="string">'detection_classes:0'</span>)</span><br><span class="line">    num_detections = detection_graph.get_tensor_by_name(<span class="string">'num_detections:0'</span>)</span><br><span class="line">    <span class="comment"># Actual detection.</span></span><br><span class="line">    <span class="comment"># 这里的class是包含多个识别种类的二维数组</span></span><br><span class="line">    <span class="comment">#[[100,4]]boxes 每个框的位置坐标,    scores 100个 ,     classes 100个 ,    num_detections 100个</span></span><br><span class="line">    (boxes, scores, classes, num_detections) = sess.run(</span><br><span class="line">        [boxes, scores, classes, num_detections],</span><br><span class="line">        feed_dict=&#123;image_tensor: image_np_expanded&#125;)</span><br><span class="line">    <span class="comment"># Visualization of the results of a detection.</span></span><br><span class="line">    vis_util.visualize_boxes_and_labels_on_image_array(</span><br><span class="line">        image_np,</span><br><span class="line">        np.squeeze(boxes),</span><br><span class="line">        np.squeeze(classes).astype(np.int32),</span><br><span class="line">        np.squeeze(scores),</span><br><span class="line">        category_index,</span><br><span class="line">        use_normalized_coordinates=<span class="keyword">True</span>,</span><br><span class="line">        line_thickness=<span class="number">4</span>,</span><br><span class="line">        min_score_thresh=<span class="number">0.5</span>)</span><br><span class="line">    <span class="keyword">return</span> image_np</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    detection_graph = tf.Graph()</span><br><span class="line">    <span class="keyword">with</span> detection_graph.as_default():</span><br><span class="line">        od_graph_def = tf.GraphDef()</span><br><span class="line">        <span class="keyword">with</span> tf.gfile.GFile(PATH_TO_CKPT, <span class="string">'rb'</span>) <span class="keyword">as</span> fid:</span><br><span class="line">            serialized_graph = fid.read()</span><br><span class="line">            od_graph_def.ParseFromString(serialized_graph)</span><br><span class="line">            tf.import_graph_def(od_graph_def, name=<span class="string">''</span>)</span><br><span class="line">    sess = tf.Session(graph=detection_graph)</span><br><span class="line">    video_capture = cv2.VideoCapture(<span class="string">'b.mp4'</span>)</span><br><span class="line">    fps = FPS().start()</span><br><span class="line">    frame_width = int(video_capture.get(<span class="number">3</span>))</span><br><span class="line">    frame_height = int(video_capture.get(<span class="number">4</span>))</span><br><span class="line">    <span class="comment"># define video output</span></span><br><span class="line">    out = cv2.VideoWriter(<span class="string">'outpy.mp4'</span>, cv2.VideoWriter_fourcc(<span class="string">'M'</span>, <span class="string">'J'</span>, <span class="string">'P'</span>, <span class="string">'G'</span>), <span class="number">10</span>, (frame_width, frame_height))</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> video_capture.isOpened():</span><br><span class="line">        ret, frame = video_capture.read()</span><br><span class="line">        t = time.time()</span><br><span class="line">        detected_image = detect_objects(frame, sess, detection_graph)</span><br><span class="line">        fps.update()</span><br><span class="line">        cv2.imshow(<span class="string">'Video'</span>, detected_image)</span><br><span class="line">		<span class="comment">#本来想来做个更加流畅的优化、就是格一个帧进行识别、但还是会阻塞</span></span><br><span class="line">        <span class="comment">#if count % 100 == 0:</span></span><br><span class="line">        <span class="comment">#    print(count)</span></span><br><span class="line">        <span class="comment"># write to video file</span></span><br><span class="line">        <span class="comment">#out.write(detected_image)</span></span><br><span class="line">        <span class="comment"># print('[INFO] elapsed time: &#123;:.2f&#125;'.format(time.time() - t))</span></span><br><span class="line">        <span class="keyword">if</span> cv2.waitKey(<span class="number">1</span>) &amp; <span class="number">0xFF</span> == ord(<span class="string">'q'</span>):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    fps.stop()</span><br><span class="line">    video_capture.release()</span><br><span class="line">    sess.close()</span><br><span class="line">    cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#visualization_untils</span></span><br><span class="line"><span class="comment">#第160行进行如下修改、check为inception3的入口、将图片和坐标传入</span></span><br><span class="line">  <span class="keyword">if</span> use_normalized_coordinates:</span><br><span class="line">    (left, right, top, bottom) = (xmin * im_width, xmax * im_width,</span><br><span class="line">                                  ymin * im_height, ymax * im_height)</span><br><span class="line">    </span><br><span class="line">    name=check(image.copy(), left, right, top, bottom)</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line"><span class="comment">##188 行处	</span></span><br><span class="line"><span class="comment">#name为全局变量、接受inception3识别结果的字符串</span></span><br><span class="line">draw.text(</span><br><span class="line">        (left + margin, text_bottom - text_height - margin),</span><br><span class="line">        name,</span><br><span class="line">        fill=<span class="string">'black'</span>,</span><br><span class="line">        font=font)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#check模块、inception3的入口</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> array</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(image,left, right, top, bottom)</span>:</span></span><br><span class="line">    got = array(image)</span><br><span class="line">    crop_img = got[int(top):int(bottom), int(left):int(right), <span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">	<span class="comment">#载入之前自己训练的模型</span></span><br><span class="line">    <span class="keyword">with</span> tf.gfile.FastGFile(<span class="string">'output_graph.pb'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        graph_def = tf.GraphDef()</span><br><span class="line">        graph_def.ParseFromString(f.read())</span><br><span class="line">        tf.import_graph_def(graph_def, name=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">        softmax_tensor = sess.graph.get_tensor_by_name(<span class="string">'final_result:0'</span>)</span><br><span class="line">		<span class="comment">#将传入的图片格式转化一下</span></span><br><span class="line">        first = tf.image.convert_image_dtype(crop_img, dtype=tf.float32)</span><br><span class="line">        <span class="comment"># jpeg 进行编码</span></span><br><span class="line">        <span class="comment"># eval()想当于将tensorflow的存储格式中提取出来以数组的格式</span></span><br><span class="line">        encode = tf.image.encode_jpeg(first.eval())</span><br><span class="line">        <span class="comment">#将编码好的图片传入以decodejpeg的格式</span></span><br><span class="line">        predictions = sess.run(softmax_tensor, &#123;<span class="string">'DecodeJpeg/contents:0'</span>: encode.eval()&#125;)  <span class="comment"># 图片格式是jpeg格式</span></span><br><span class="line">        predictions = np.squeeze(predictions)  <span class="comment"># 把结果转为1维数据</span></span><br><span class="line">        top_k = predictions.argsort()[::<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> top_k[<span class="number">0</span>]==<span class="number">1</span>:</span><br><span class="line">            human_string=<span class="string">"unsafe"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            human_string=<span class="string">"safe"</span></span><br><span class="line">        <span class="keyword">return</span> human_string</span><br><span class="line">        <span class="comment">#返回给画框的代码</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>看似十分完美流程的过程在实际运行时由于笔记本配置低下(好想要GPU的台式机！！)、换了一台配置稍微高一点的本、但还是崩了、tensorflow开两个session的内存消耗比想象中的要大、开<br>看来这操作只能是活在梦里了、希望以后能想出一种底层之间的优化(相比之前的已经做了很多IO的优化、但主要问题还是这是线性的操作、一定有卡顿来进行二次判断)</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/05/03/2018-5-3 /">安全检测</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
+        <p><span>发布时间:</span>2018年05月03日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年05月03日 - 20时45分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/05/03/2018-5-3 /" title="安全检测">https://www.shadowerli.com/2018/05/03/2018-5-3 /</a>
+            <span class="copy-path" data-clipboard-text="原文: https://www.shadowerli.com/2018/05/03/2018-5-3 /　　作者: Shadowerli" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a  href="/2018/04/08/2018-4-8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">定点识别</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单介绍"><span class="toc-number">1.</span> <span class="toc-text">简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体步骤-非主流方法请勿模仿、"><span class="toc-number">2.</span> <span class="toc-text">具体步骤(非主流方法请勿模仿、)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/04/08/2018-4-8/" title="下一篇: 定点识别">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/03/2018-5-3 /">安全检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/22/2018-1-22/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/2017-12-27/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/26/2017-12-26/">杂记</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+     
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 4;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
