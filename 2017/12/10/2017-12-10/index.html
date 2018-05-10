@@ -7,19 +7,26 @@
   
   
   
-  <title>Java动态代理 | welcome to my blog</title>
+  <title>基本神经网络 | welcome to my blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个java动态代理的小例子">
-<meta name="keywords" content="java">
+  <meta name="description" content="简单整理一下神经网络训练的步骤">
+<meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java动态代理">
-<meta property="og:url" content="https://www.shadowerli.com/2018/01/22/2018-1-22/index.html">
+<meta property="og:title" content="基本神经网络">
+<meta property="og:url" content="https://www.shadowerli.com/2017/12/10/2017-12-10/index.html">
 <meta property="og:site_name" content="welcome to my blog">
-<meta property="og:description" content="这是一个java动态代理的小例子">
-<meta property="og:updated_time" content="2018-04-23T07:23:39.637Z">
+<meta property="og:description" content="简单整理一下神经网络训练的步骤">
+<meta property="og:image" content="http://aRootUser.github.io/img/2/1.jpg">
+<meta property="og:image" content="http://aRootUser.github.io/img/2/2.jpg">
+<meta property="og:image" content="http://aRootUser.github.io/img/2/3.jpg">
+<meta property="og:image" content="http://aRootUser.github.io/img/2/4.jpg">
+<meta property="og:image" content="http://aRootUser.github.io/img/2/5.jpg">
+<meta property="og:image" content="http://aRootUser.github.io/img/2/6.jpg">
+<meta property="og:updated_time" content="2018-05-10T08:13:32.167Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java动态代理">
-<meta name="twitter:description" content="这是一个java动态代理的小例子">
+<meta name="twitter:title" content="基本神经网络">
+<meta name="twitter:description" content="简单整理一下神经网络训练的步骤">
+<meta name="twitter:image" content="http://aRootUser.github.io/img/2/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
   
@@ -188,7 +195,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/cnn/" style="font-size: 10px;">cnn</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/other/" style="font-size: 20px;">other</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/图像识别/" style="font-size: 10px;">图像识别</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a>
+                        <a href="/tags/cnn/" style="font-size: 10px;">cnn</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/other/" style="font-size: 20px;">other</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/图像识别/" style="font-size: 20px;">图像识别</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a>
                     </div>
                 </section>
                 
@@ -259,11 +266,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-2018-1-22" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-2017-12-10" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/01/22/2018-1-22/" class="article-date">
-      <time datetime="2018-01-21T16:00:00.000Z" itemprop="datePublished">2018-01-22</time>
+      <a  href="/2017/12/10/2017-12-10/" class="article-date">
+      <time datetime="2017-12-09T16:00:00.000Z" itemprop="datePublished">2017-12-10</time>
 </a>
 
     </div>
@@ -277,7 +284,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java动态代理
+      基本神经网络
     </h1>
   
 
@@ -287,13 +294,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/大数据/">大数据</a>
+    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -303,9 +310,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |="" 首页摘要=""><br>这是一个java动态代理的小例子<br><a id="more"></a><br>java动态代理主要用于一个类的方法的增强 、<br>例如类a有一个方法b()、当一个类要调用方法b()时需要给方法b()增加新的功能、<br>但有些时候又需要调用b()的原先方法所以此时不可以重写方法b()、因此使用代理可以在不改变方法b()的基础上来增强方法、以后就使用代理类的增强方法、<br>首先定义三个类一个接口、接口Buy中定义需要增强的方法、原始类Old中的实现原始方法money、定义增强类Proxyclass来实现增强方法、测试类Test来测试增强的方法</excerpt></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Buy</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">money</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Old</span> <span class="keyword">implements</span> <span class="title">Buy</span></span>&#123;</span><br><span class="line"><span class="comment">//需要增强的方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">money</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//测试类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Old old=<span class="keyword">new</span> Old();</span><br><span class="line">		System.out.println(<span class="string">"old money"</span>+old.money(<span class="number">44</span>));</span><br><span class="line">		Buy a=Proxyclass.getproxyclass(<span class="number">5</span>);</span><br><span class="line">		System.out.println(a.money(<span class="number">500</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//代理类</span></span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">Proxyclass</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Buy <span class="title">getproxyclass</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		Object proxyobj=Proxy.newProxyInstance(Old.class.getClassLoader(),<span class="keyword">new</span> Class[] &#123;Buy.class&#125;, <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">				 <span class="comment">//反射拿到原来的方法</span></span><br><span class="line">        Integer result=(Integer)method.invoke(<span class="keyword">new</span> Old(),args);</span><br><span class="line">        <span class="comment">//增强的方法</span></span><br><span class="line">				<span class="keyword">return</span> result-num;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">    <span class="comment">//返回接口</span></span><br><span class="line">		<span class="keyword">return</span> (Buy)proxyobj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>java spring框架就用了动态代理技术、能为容器中的对象生成动态代理对象、通过利用AOP思想对一些类的功能做了抽取</p>
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>简单整理一下神经网络训练的步骤<br><a id="more"></a><br>总结一下最简单的神经网络的训练过程和原理<br>通常利用数据交叉验证来提高数据利用率<br><img src="http://aRootUser.github.io/img/2/1.jpg"><br>交叉验证：给定一个训练集和测试集，为了最大程度的利用测试集，可以将训练集分为若干份，这里为5。第一次将fold1(折)作为测试集其余的作为训练集，第二次将fold2作为测试集，其余的作为训练集，以此类推从而达到最大化利用数据更新权重的效果<br><img src="http://aRootUser.github.io/img/2/2.jpg"><br>对于输入的一张图片简单将图片的输入像素点看成[1,4]的矩阵、输出层为[1,3],中间的权值为[4,3]的矩阵、和图中不同图中是左成矩阵、这里定义的是右乘矩阵、没有定义中间层、最后还要加上[1,3]偏置值得到[1,3]的输出值每一个值代表某一类别的得分、<br><img src="http://aRootUser.github.io/img/2/3.jpg"><br>为了更好的定以中间权值定义的好坏以及预测结果的准确程度、用损失函数来衡量、损失函数最小表示预测越准确、这里定义的是svm损失函数、<br>l 表示自己定义的可容忍的长度<br>yi表示正确类别的得分<br>j表示其他类别的得分<br>通过计算每个其他类别减去正确类别的得分的最大值的求和来表是损失函数的结果对于多个输入例如输入100张图片还要除去100相当于取平均值<br><img src="http://aRootUser.github.io/img/2/4.jpg"><br>为了防止权值为0从而导致输入样本的每一个值没有被充分利用例如训练得到的两个权值<br>设输入的样本为[1,1,1,1]<br>权重W1[0.5,0.5,0.5,0.5]<br>权重W2[1,0,0,0]<br>矩阵相乘后得到的结果相同但是w2由于有三个0没有充分利用每一项所以添加w的平方项来惩罚权重为w2的情况、使其损失值变大<br><img src="http://aRootUser.github.io/img/2/5.jpg"><br><img src="http://aRootUser.github.io/img/2/6.jpg"><br>分类器的作用将输出的值通过sigmoid函数映射到0至1的区间上、e的x次幂进行放大、最后通过取其作为正确类别的概率取负对数得最终其对应的损失值(因为概率越大越输出的损失值越小)<br>前向传播：从输入的x一直到计算出loss、通过梯度下降算法找到一个下降方向、最终找到最低点、训练的批次数一般为2的整数次幂<br>一个Epoch表示迭代完所有数据、一个迭代表示跑完当前的一个batch</excerpt></p>
+<h2 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h2><p>每次训练跟新权重的变化要乘一个学习率来调整权值变化的大小、过大会错过最优解</p>
+<h2 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h2><p>通过计算出每一个权重对最终的loss值的影响来调整权重的大小(向前传播的逆向求解)</p>
+<h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>对神经元的输出进行去线性化、例如sigmoid函数(由于当x过大时很容易导致梯度消失使其无法求导进行反向传播、现在一般用relu激活函数并且求导简单）</p>
+<h2 id="过拟合问题"><a href="#过拟合问题" class="headerlink" title="过拟合问题"></a>过拟合问题</h2><p>drop-out进行处理通过迭代来弥补神经网络的复杂度</p>
+<h2 id="过程小结"><a href="#过程小结" class="headerlink" title="过程小结"></a>过程小结</h2><p>首先输入训练集如手写数字集、定义神经网络后、通过向前传播得到对每一个类别的输出、通过sortmax函数将输出转化为概率分布、通过与标签进行如下运算个（标签是one-hot概率）、将输出的概率分布取对数与标签值乘积在做平均值求和最后取负数-tf.reduce_sum(y_*tf.log(y))、得到交叉熵来反应结果集与标签的相似度、最后通过梯度下降法不断训练使交叉熵最小、来优化权重参数、</p>
 
       
     </div>
@@ -314,13 +324,11 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/01/22/2018-1-22/">Java动态代理</a></p>
+        <p><span>本文标题:</span><a  href="/2017/12/10/2017-12-10/">基本神经网络</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
-        <p><span>发布时间:</span>2018年01月22日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年04月23日 - 15时23分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/01/22/2018-1-22/" title="Java动态代理">https://www.shadowerli.com/2018/01/22/2018-1-22/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://www.shadowerli.com/2018/01/22/2018-1-22/　　作者: Shadowerli" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/10/2017-12-10/" title="基本神经网络">https://www.shadowerli.com/2017/12/10/2017-12-10/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://www.shadowerli.com/2017/12/10/2017-12-10/　　作者: Shadowerli" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -331,18 +339,18 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/01/27/2018-1-27/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2018/01/12/2018-1-12/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          数据集生成器
+          Java动态代理
         
       </div>
     </a>
   
   
-    <a  href="/2017/12/27/2017-12-27/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基本神经网络</div>
+    <a  href="/2017/12/02/2017-12-02/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Webnote</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -354,7 +362,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#学习率"><span class="toc-number">1.</span> <span class="toc-text">学习率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反向传播"><span class="toc-number">2.</span> <span class="toc-text">反向传播</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#激活函数"><span class="toc-number">3.</span> <span class="toc-text">激活函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过拟合问题"><span class="toc-number">4.</span> <span class="toc-text">过拟合问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过程小结"><span class="toc-number">5.</span> <span class="toc-text">过程小结</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -406,18 +414,18 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/01/27/2018-1-27/" title="上一篇: 数据集生成器">
+            <a  href="/2018/01/12/2018-1-12/" title="上一篇: Java动态代理">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2017/12/27/2017-12-27/" title="下一篇: 基本神经网络">
+            <a  href="/2017/12/02/2017-12-02/" title="下一篇: Webnote">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/03/2018-5-3 /">安全检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/22/2018-1-22/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/27/2017-12-27/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/26/2017-12-26/">杂记</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/03/2018-5-3 /">安全检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/2018-1-12/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/2017-12-10/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/2017-12-02/">Webnote</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
