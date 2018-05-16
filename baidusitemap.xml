@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://www.shadowerli.com/2017/12/02/2017-12-02/</loc>
+    <lastmod>2018-05-16T10:08:35.965Z</lastmod>
+    <data>
+        <display>
+        <title>Webnote</title>
+        <pubTime>2017-12-01T16:00:00.000Z</pubTime>
+        
+        <tag>other</tag>
+         
+         
+           
+             
+              <breadCrumb title="other" url="https://www.shadowerli.com/categories/other/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.shadowerli.com/2018/01/12/2018-1-12/</loc>
     <lastmod>2018-05-10T08:14:17.434Z</lastmod>
     <data>
@@ -37,26 +57,6 @@
            
              
               <breadCrumb title="深度学习" url="https://www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.shadowerli.com/2017/12/02/2017-12-02/</loc>
-    <lastmod>2018-05-10T08:12:00.084Z</lastmod>
-    <data>
-        <display>
-        <title>Webnote</title>
-        <pubTime>2017-12-01T16:00:00.000Z</pubTime>
-        
-        <tag>other</tag>
-         
-         
-           
-             
-              <breadCrumb title="other" url="https://www.shadowerli.com/categories/other/"/>
           
         </display>
     </data>
