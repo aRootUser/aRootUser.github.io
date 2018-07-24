@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.shadowerli.com/"/>
-  <updated>2018-07-23T12:49:04.312Z</updated>
+  <updated>2018-07-24T06:24:51.611Z</updated>
   <id>https://www.shadowerli.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://www.shadowerli.com/2018/07/23/2018-7-23%20/"/>
     <id>https://www.shadowerli.com/2018/07/23/2018-7-23 /</id>
     <published>2018-07-22T16:00:00.000Z</published>
-    <updated>2018-07-23T12:49:04.312Z</updated>
+    <updated>2018-07-24T06:24:51.611Z</updated>
     
-    <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>先从整体来讲讲spark的整个流程<br><a id="more"></a><br>从今天开始终于要做想做了很久的事–学习spark源码。难度异常之大、无论是scala的复杂语法、还是底层复杂的RPC调用都不是短时间内捋的清的、<br>但也只能硬着头皮上了、毕竟不能只做一个调包侠是吧。这篇博客长期更新、每天记录一部分、希望有一天无论是对于spark还是scala都有一种茅塞顿开的感觉、<br>最后再感慨一下、上班真好！！！</excerpt></p>]]></content>
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |="" 首页摘要=""><br>先从整体来讲讲spark的整个流程<br><a id="more"></a><br>从今天开始终于要做想做了很久的事–学习spark源码。难度异常之大、无论是scala的复杂语法、还是底层复杂的RPC调用都不是短时间内捋的清的、<br>但也只能硬着头皮上了、毕竟不能只做一个调包侠是吧。这篇博客长期更新、每天记录一部分、希望有一天无论是对于spark还是scala都有一种茅塞顿开的感觉、<br>最后再感慨一下、上班真好！！！</excerpt></p><h3 id="spark作业提交至执行流程"><a href="#spark作业提交至执行流程" class="headerlink" title="spark作业提交至执行流程"></a>spark作业提交至执行流程</h3><p>整个spark作业执行流程单位从大到小分别为DAG、stage、taskset、rdd(task)<br>执行步骤为:生成DAG、DAGScheduler调度、TaskScheduler调度、Worker执行任务<br>stage:由DAGScheduler根据依赖对DAG进行切分得到的单位<br>taskest:每个stage包含若干个taskset、每个taskset包含多个task<br>DAGScheduler:接收DAG后进行划分stage、根据每个stage的partition创建多个Task、最后以taskset的形式提交给TaskScheduler<br>TaskScheduler:接受stage后创建TaskManager对Taskset进行管理、把TaskManager添加到调度池将其交给SchedulerBackend处理(他通过申请TaskScheduler、按照Task调度算法对TaskManager进行排序、然后对Taskset进行分配资源)、</p><h3 id="spark-shuffle的细节"><a href="#spark-shuffle的细节" class="headerlink" title="spark shuffle的细节"></a>spark shuffle的细节</h3>]]></content>
     
     <summary type="html">
     
