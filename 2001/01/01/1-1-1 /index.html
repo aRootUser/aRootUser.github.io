@@ -14,7 +14,7 @@
 <meta property="og:title" content="算法及深入解析Java">
 <meta property="og:url" content="https://www.shadowerli.com/2001/01/01/1-1-1 /index.html">
 <meta property="og:site_name" content="welcome to my blog">
-<meta property="og:updated_time" content="2018-06-16T14:13:24.597Z">
+<meta property="og:updated_time" content="2018-07-27T08:38:57.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法及深入解析Java">
   
@@ -306,7 +306,10 @@
 <p>长期跟进算法及java深入解析</p>
 <p><the rest="" of="" contents="" |="" 余下全文=""><br>第一次参加远程面试、、然后一道简单的算法题、被虐、意识到算法是一切的根本、接下来慢慢啃吧</the></p>
 <h2 id="Hashmap的实现原理"><a href="#Hashmap的实现原理" class="headerlink" title="Hashmap的实现原理"></a>Hashmap的实现原理</h2><p><a href="https://blog.csdn.net/vking_wang/article/details/14166593" target="_blank" rel="noopener">https://blog.csdn.net/vking_wang/article/details/14166593</a><br>简单来讲就是hashmap是数组加链表、数组存放首个entry[]（一个类、包含、key、value、next）相当于每个链表的节点、同一个hash值依次向后链接<br>再补充个常识迭代是指每次循环对一个数进行操作</p>
-</excerpt>
+<h2 id="数组题的细节"><a href="#数组题的细节" class="headerlink" title="数组题的细节"></a>数组题的细节</h2><p>###int a = new int[3];<br>这句话生成的数组长度为3、用0填充(非常重要)。</p>
+<p>求两个数组交集的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] intersect(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">        ArrayList temp = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        ArrayList list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">		<span class="comment">//for each循环数组、注意之前有int、十分简洁的写法</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> n:nums1)&#123;</span><br><span class="line">            temp.add(n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> m:nums2)&#123;</span><br><span class="line">			<span class="comment">//返回包含这个数的下标</span></span><br><span class="line">            <span class="keyword">int</span> index = temp.indexOf(m);</span><br><span class="line">            <span class="keyword">if</span>(index!=-<span class="number">1</span>)&#123;</span><br><span class="line">                list.add(temp.remove(index));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            a[i] = (<span class="keyword">int</span>) list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//还有一种方法事先进行排序</span></span><br><span class="line"><span class="comment">//Array.sort()对其进行排序</span></span><br></pre></td></tr></table></figure></p>
+<p>很好的分区方法对数读的九个区进行分区</p>
+<h3 id="list3-get-x-3-3-y-3-add-result"><a href="#list3-get-x-3-3-y-3-add-result" class="headerlink" title="list3.get(x/3*3+y/3).add(result);"></a>list3.get(x/3*3+y/3).add(result);</h3></excerpt>
       
     </div>
     
@@ -347,7 +350,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hashmap的实现原理"><span class="toc-number">1.</span> <span class="toc-text">Hashmap的实现原理</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hashmap的实现原理"><span class="toc-number">1.</span> <span class="toc-text">Hashmap的实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组题的细节"><span class="toc-number">2.</span> <span class="toc-text">数组题的细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list3-get-x-3-3-y-3-add-result"><span class="toc-number">2.1.</span> <span class="toc-text">list3.get(x/3*3+y/3).add(result);</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {

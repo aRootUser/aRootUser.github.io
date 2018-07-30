@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://www.shadowerli.com/2018/07/23/2018-7-23 /index.html">
 <meta property="og:site_name" content="welcome to my blog">
 <meta property="og:description" content="先从整体来讲讲spark的整个流程">
-<meta property="og:updated_time" content="2018-07-26T06:19:36.438Z">
+<meta property="og:updated_time" content="2018-07-27T11:19:38.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark源码阅读">
 <meta name="twitter:description" content="先从整体来讲讲spark的整个流程">
@@ -307,6 +307,7 @@
 <h2 id="spark作业提交至执行流程"><a href="#spark作业提交至执行流程" class="headerlink" title="spark作业提交至执行流程"></a>spark作业提交至执行流程</h2><p>整个spark作业执行流程单位从大到小分别为DAG、stage、taskset、rdd(task)<br>执行步骤为:提交作业job后首先构建生成DAG、通过DAGScheduler调度根据依赖对DAG进行切分得到stage、然后TaskScheduler接受stage后对taskset进行管理并分配给Worker、Worker执行任务<br>stage:由DAGScheduler根据依赖对DAG进行切分得到的单位<br>taskest:每个stage包含若干个taskset、每个taskset包含多个task<br>DAGScheduler:接收DAG后进行划分stage(上游的为ShuffleMapStage、下游为ResultStage)、<br>根据每个stage的partition创建多个Task、最后以taskset的形式提交给TaskScheduler<br>TaskScheduler:接受stage后创建TaskManager对Taskset进行管理、把TaskManager添加到调度池将其交给SchedulerBackend处理(他通过申请TaskScheduler、按照Task调度算法对TaskManager进行排序、然后对Taskset进行分配资源)、</p>
 <h2 id="spark-shuffle的细节"><a href="#spark-shuffle的细节" class="headerlink" title="spark shuffle的细节"></a>spark shuffle的细节</h2><p>先从spark shuffle的问题开始说起<br>早期的spark shuffle存在两个问题1、如果map阶段的输出过大容易造成内存溢出OOM 2、如果reduce的数目过多、每个map的输出结果放到的分区数目过大、会使IO的资源消耗比较严重<br>所以有了如下改进方法<br>1、map输出的结果不是一次性全部输出而是一部分一部分输出、当出现内存空间不足时再将部分数据写到磁盘中<br>2、所有的map输出放到一个合并到一个busket、<br>3、reduce也是逐条拉取、而不是一次性读取</p>
 <h2 id="spark的内存优化"><a href="#spark的内存优化" class="headerlink" title="spark的内存优化"></a>spark的内存优化</h2><p>Tungsten(钨)直接调用sun的api操作内存、所以不用再jvm上创建额外的类和对象</p>
+<h2 id="spark各组件间的通信"><a href="#spark各组件间的通信" class="headerlink" title="spark各组件间的通信"></a>spark各组件间的通信</h2><p>Driver是spark的驱动程序、Driver上有一个心跳接收器HeartbeatReceiver、用来接收excutor的心跳信息、每个活跃的excutor都会定时向接收器发送HeartBeat消息<br>具体的细节如下</p>
 
       
     </div>
@@ -344,7 +345,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#spark作业提交至执行流程"><span class="toc-number">1.</span> <span class="toc-text">spark作业提交至执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark-shuffle的细节"><span class="toc-number">2.</span> <span class="toc-text">spark shuffle的细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark的内存优化"><span class="toc-number">3.</span> <span class="toc-text">spark的内存优化</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#spark作业提交至执行流程"><span class="toc-number">1.</span> <span class="toc-text">spark作业提交至执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark-shuffle的细节"><span class="toc-number">2.</span> <span class="toc-text">spark shuffle的细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark的内存优化"><span class="toc-number">3.</span> <span class="toc-text">spark的内存优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark各组件间的通信"><span class="toc-number">4.</span> <span class="toc-text">spark各组件间的通信</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
