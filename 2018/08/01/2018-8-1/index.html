@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>Hdfs源码阅读 | welcome to my blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为了提高java能力、打算自己造一个简单的hdfs">
+<meta name="keywords" content="hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hdfs源码阅读">
+<meta property="og:url" content="https://www.shadowerli.com/2018/08/01/2018-8-1/index.html">
+<meta property="og:site_name" content="welcome to my blog">
+<meta property="og:description" content="为了提高java能力、打算自己造一个简单的hdfs">
+<meta property="og:updated_time" content="2018-08-02T01:50:07.936Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hdfs源码阅读">
+<meta name="twitter:description" content="为了提高java能力、打算自己造一个简单的hdfs">
+  
+    <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Shadowerli</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                            <li><a  href="/categories/大数据">大数据</a></li>
+                        
+                            <li><a  href="/categories/深度学习">深度学习</a></li>
+                        
+                            <li><a  href="/categories/机器学习">机器学习</a></li>
+                        
+                            <li><a  href="/categories/other">其他</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                            
+                                <a class="fl facebook"  target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/cnn/" style="font-size: 10px;">cnn</a> <a href="/tags/hadoop/" style="font-size: 10px;">hadoop</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/other/" style="font-size: 20px;">other</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/图像识别/" style="font-size: 13.33px;">图像识别</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.shadowerli.com/about">想互相添加友链的邮箱联系、广告除外</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://qiuri.org">秋日的博客</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Shadowerli</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Shadowerli</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                    <li><a href="/categories/大数据">大数据</a></li>
+                
+                    <li><a href="/categories/深度学习">深度学习</a></li>
+                
+                    <li><a href="/categories/机器学习">机器学习</a></li>
+                
+                    <li><a href="/categories/other">其他</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2018-8-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/08/01/2018-8-1/" class="article-date">
+      <time datetime="2018-07-31T16:00:00.000Z" itemprop="datePublished">2018-08-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hdfs源码阅读
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/大数据/">大数据</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>为了提高java能力、打算自己造一个简单的hdfs<br><a id="more"></a><br>首简单熟悉api再从hdfs的源码开始看起<br>hdfs的一系列操作如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IOUtils;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HdfsClient</span> </span>&#123;</span><br><span class="line">        FileSystem fs = <span class="keyword">null</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="comment">// 构造一个配置参数对象，设置一个参数：我们要访问的hdfs的URI</span></span><br><span class="line">            <span class="comment">// 从而FileSystem.get()方法就知道应该是去构造一个访问hdfs文件系统的客户端，以及hdfs的访问地址</span></span><br><span class="line">            <span class="comment">// new Configuration();的时候，它就会去加载jar包中的hdfs-default.xml</span></span><br><span class="line">            <span class="comment">// 然后再加载classpath下的hdfs-site.xml</span></span><br><span class="line">            Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">            conf.set(<span class="string">"fs.defaultFS"</span>, <span class="string">"hdfs://hdp-node01:9000"</span>);</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 参数优先级： 1、客户端代码中设置的值 2、classpath下的用户自定义配置文件 3、然后是服务器的默认配置</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            conf.set(<span class="string">"dfs.replication"</span>, <span class="string">"3"</span>);</span><br><span class="line">            <span class="comment">// 获取一个hdfs的访问客户端，根据参数，这个实例应该是DistributedFileSystem的实例</span></span><br><span class="line">            <span class="comment">// fs = FileSystem.get(conf);</span></span><br><span class="line">            <span class="comment">// 如果这样去获取，那conf里面就可以不要配"fs.defaultFS"参数，而且，这个客户端的身份标识已经是hadoop用户</span></span><br><span class="line">            fs = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">"hdfs://hdp-node01:9000"</span>), conf, <span class="string">"hadoop"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 往hdfs上传文件</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddFileToHdfs</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="comment">// 要上传的文件所在的本地路径</span></span><br><span class="line">            Path src = <span class="keyword">new</span> Path(<span class="string">"g:/redis-recommend.zip"</span>);</span><br><span class="line">            <span class="comment">// 要上传到hdfs的目标路径</span></span><br><span class="line">            Path dst = <span class="keyword">new</span> Path(<span class="string">"/aaa"</span>);</span><br><span class="line">            fs.copyFromLocalFile(src, dst);</span><br><span class="line">            fs.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 从hdfs中复制文件到本地文件系统</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDownloadFileToLocal</span><span class="params">()</span> <span class="keyword">throws</span> IllegalArgumentException, IOException </span>&#123;</span><br><span class="line">            fs.copyToLocalFile(<span class="keyword">new</span> Path(<span class="string">"/jdk-7u65-linux-i586.tar.gz"</span>), <span class="keyword">new</span> Path(<span class="string">"d:/"</span>));</span><br><span class="line">            fs.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMkdirAndDeleteAndRename</span><span class="params">()</span> <span class="keyword">throws</span> IllegalArgumentException, IOException </span>&#123;</span><br><span class="line">            <span class="comment">// 创建目录</span></span><br><span class="line">            fs.mkdirs(<span class="keyword">new</span> Path(<span class="string">"/a1/b1/c1"</span>));</span><br><span class="line">            <span class="comment">// 删除文件夹 ，如果是非空文件夹，参数2必须给值true</span></span><br><span class="line">            fs.delete(<span class="keyword">new</span> Path(<span class="string">"/aaa"</span>), <span class="keyword">true</span>);</span><br><span class="line">            <span class="comment">// 重命名文件或文件夹</span></span><br><span class="line">            fs.rename(<span class="keyword">new</span> Path(<span class="string">"/a1"</span>), <span class="keyword">new</span> Path(<span class="string">"/a2"</span>));</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 查看目录信息，只显示文件</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testListFiles</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException, IllegalArgumentException, IOException </span>&#123;</span><br><span class="line">            <span class="comment">// 思考：为什么返回迭代器，而不是List之类的容器</span></span><br><span class="line">            RemoteIterator&lt;LocatedFileStatus&gt; listFiles = fs.listFiles(<span class="keyword">new</span> Path(<span class="string">"/"</span>), <span class="keyword">true</span>);</span><br><span class="line">            <span class="keyword">while</span> (listFiles.hasNext()) &#123;</span><br><span class="line">                LocatedFileStatus fileStatus = listFiles.next();</span><br><span class="line">                System.out.println(fileStatus.getPath().getName());</span><br><span class="line">                System.out.println(fileStatus.getBlockSize());</span><br><span class="line">                System.out.println(fileStatus.getPermission());</span><br><span class="line">                System.out.println(fileStatus.getLen());</span><br><span class="line">                BlockLocation[] blockLocations = fileStatus.getBlockLocations();</span><br><span class="line">                <span class="keyword">for</span> (BlockLocation bl : blockLocations) &#123;</span><br><span class="line">                    System.out.println(<span class="string">"block-length:"</span> + bl.getLength() + <span class="string">"--"</span> + <span class="string">"block-offset:"</span> + bl.getOffset());</span><br><span class="line">                    String[] hosts = bl.getHosts();</span><br><span class="line">                    <span class="keyword">for</span> (String host : hosts) &#123;</span><br><span class="line">                        System.out.println(host);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">"--------------为angelababy打印的分割线--------------"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 查看文件及文件夹信息</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testListAll</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException, IllegalArgumentException, IOException </span>&#123;</span><br><span class="line">            FileStatus[] listStatus = fs.listStatus(<span class="keyword">new</span> Path(<span class="string">"/"</span>));</span><br><span class="line">            String flag = <span class="string">"d--             "</span>;</span><br><span class="line">            <span class="keyword">for</span> (FileStatus fstatus : listStatus) &#123;</span><br><span class="line">                <span class="keyword">if</span> (fstatus.isFile())  flag = <span class="string">"f--         "</span>;</span><br><span class="line">                System.out.println(flag + fstatus.getPath().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 相对那些封装好的方法而言的更底层一些的操作方式</span></span><br><span class="line"><span class="comment">     * 上层那些mapreduce   spark等运算框架，去hdfs中获取数据的时候，就是调的这种底层的api</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StreamAccess</span> </span>&#123;</span><br><span class="line">        FileSystem fs = <span class="keyword">null</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">            fs = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">"hdfs://hdp-node01:9000"</span>), conf, <span class="string">"hadoop"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 通过流的方式上传文件到hdfs</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpload</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            FSDataOutputStream outputStream = fs.create(<span class="keyword">new</span> Path(<span class="string">"/angelababy.love"</span>), <span class="keyword">true</span>);</span><br><span class="line">            FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"c:/angelababy.love"</span>);</span><br><span class="line">            IOUtils.copyBytes(inputStream, outputStream,<span class="number">3333333</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDownLoadFileToLocal</span><span class="params">()</span> <span class="keyword">throws</span> IllegalArgumentException, IOException</span>&#123;</span><br><span class="line">            <span class="comment">//先获取一个文件的输入流----针对hdfs上的</span></span><br><span class="line">            FSDataInputStream in = fs.open(<span class="keyword">new</span> Path(<span class="string">"/jdk-7u65-linux-i586.tar.gz"</span>));</span><br><span class="line">            <span class="comment">//再构造一个文件的输出流----针对本地的</span></span><br><span class="line">            FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"c:/jdk.tar.gz"</span>));</span><br><span class="line">            <span class="comment">//再将输入流中数据传输到输出流</span></span><br><span class="line">            IOUtils.copyBytes(in, out, <span class="number">4096</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * hdfs支持随机定位进行文件读取，而且可以方便地读取指定长度</span></span><br><span class="line"><span class="comment">         * 用于上层分布式运算框架并发处理数据</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@throws</span> IllegalArgumentException</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testRandomAccess</span><span class="params">()</span> <span class="keyword">throws</span> IllegalArgumentException, IOException</span>&#123;</span><br><span class="line">            <span class="comment">//先获取一个文件的输入流----针对hdfs上的</span></span><br><span class="line">            FSDataInputStream in = fs.open(<span class="keyword">new</span> Path(<span class="string">"/iloveyou.txt"</span>));</span><br><span class="line">            <span class="comment">//可以将流的起始偏移量进行自定义</span></span><br><span class="line">            in.seek(<span class="number">22</span>);</span><br><span class="line">            <span class="comment">//再构造一个文件的输出流----针对本地的</span></span><br><span class="line">            FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"c:/iloveyou.line.2.txt"</span>));</span><br><span class="line">            IOUtils.copyBytes(in,out,<span class="number">19L</span>,<span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 显示hdfs上文件的内容</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCat</span><span class="params">()</span> <span class="keyword">throws</span> IllegalArgumentException, IOException</span>&#123;</span><br><span class="line">            FSDataInputStream in = fs.open(<span class="keyword">new</span> Path(<span class="string">"/iloveyou.txt"</span>));</span><br><span class="line">            IOUtils.copyBytes(in, System.out, <span class="number">1024</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCat2</span><span class="params">()</span> <span class="keyword">throws</span> IllegalArgumentException, IOException</span>&#123;</span><br><span class="line">            FSDataInputStream in = fs.open(<span class="keyword">new</span> Path(<span class="string">"/weblog/input/access.log.10"</span>));</span><br><span class="line">            <span class="comment">//拿到文件信息</span></span><br><span class="line">            FileStatus[] listStatus = fs.listStatus(<span class="keyword">new</span> Path(<span class="string">"/weblog/input/access.log.10"</span>));</span><br><span class="line">            <span class="comment">//获取这个文件的所有block的信息</span></span><br><span class="line">            BlockLocation[] fileBlockLocations = fs.getFileBlockLocations(listStatus[<span class="number">0</span>], <span class="number">0L</span>, listStatus[<span class="number">0</span>].getLen());</span><br><span class="line">            <span class="comment">//第一个block的长度</span></span><br><span class="line">            <span class="keyword">long</span> length = fileBlockLocations[<span class="number">0</span>].getLength();</span><br><span class="line">            <span class="comment">//第一个block的起始偏移量</span></span><br><span class="line">            <span class="keyword">long</span> offset = fileBlockLocations[<span class="number">0</span>].getOffset();</span><br><span class="line">            System.out.println(length);</span><br><span class="line">            System.out.println(offset);</span><br><span class="line">            <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4096</span>];</span><br><span class="line">            FileOutputStream os = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"d:/block0"</span>));</span><br><span class="line">            <span class="keyword">while</span>(in.read(offset, b, <span class="number">0</span>, <span class="number">4096</span>)!=-<span class="number">1</span>)&#123;</span><br><span class="line">                os.write(b);</span><br><span class="line">                offset += <span class="number">4096</span>;</span><br><span class="line">                <span class="keyword">if</span>(offset&gt;=length) <span class="keyword">return</span>;</span><br><span class="line">            &#125;;</span><br><span class="line">            os.flush();</span><br><span class="line">            os.close();</span><br><span class="line">            in.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></excerpt></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/08/01/2018-8-1/">Hdfs源码阅读</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/01/2018-8-1/" title="Hdfs源码阅读">https://www.shadowerli.com/2018/08/01/2018-8-1/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://www.shadowerli.com/2018/08/01/2018-8-1/　　作者: Shadowerli" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a  href="/2018/07/23/2018-7-23 /" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark源码阅读</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/07/23/2018-7-23 /" title="下一篇: Spark源码阅读">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/01/2018-8-1/">Hdfs源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/2018-7-23 /">Spark源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/01/2018-7-3/">个人简历</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/05/2018-6-5/">RPC通信机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/03/2018-5-3 /">安全检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/2018-1-12/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/2017-12-10/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/2017-12-02/">Webnote</a></li><li class="post-list-item"><a class="post-list-link" href="/2001/01/01/1-1-1 /">算法及深入解析Java</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 LMX
+            </div>
+            <div class="footer-right">
+                <a href="https://hexo.io/" target="_blank">theme by hexo &nbsp;&nbsp;</a>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 4;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
