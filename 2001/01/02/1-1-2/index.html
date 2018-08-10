@@ -7,14 +7,16 @@
   
   
   
-  <title>Archives: 2018/3 | welcome to my blog</title>
+  <title>Think in Java | welcome to my blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="welcome to my blog">
-<meta property="og:url" content="https://www.shadowerli.com/archives/2018/03/index.html">
+  <meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Think in Java">
+<meta property="og:url" content="https://www.shadowerli.com/2001/01/02/1-1-2/index.html">
 <meta property="og:site_name" content="welcome to my blog">
+<meta property="og:updated_time" content="2018-08-08T06:36:41.266Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="welcome to my blog">
+<meta name="twitter:title" content="Think in Java">
   
     <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
   
@@ -39,8 +41,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: false
@@ -254,97 +256,196 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-1-1-2" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a  href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a  href="/2018/03/23/2018-3-23/" class="archive-article-date">
-      <time datetime="2018-03-22T16:00:00.000Z" itemprop="datePublished">03-23</time>
+    <div class="article-meta">
+      <a  href="/2001/01/02/1-1-2/" class="article-date">
+      <time datetime="2001-01-01T16:00:00.000Z" itemprop="datePublished">2001-01-02</time>
 </a>
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a  class="archive-article-title" href="/2018/03/23/2018-3-23/">博客搬家</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Think in Java
     </h1>
   
 
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/other/">other</a>
+    <a class="article-category-link" href="/categories/java/">java</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a  href="/2018/03/21/2018-3-22/" class="archive-article-date">
-      <time datetime="2018-03-20T16:00:00.000Z" itemprop="datePublished">03-21</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a  class="archive-article-title" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+        <excerpt in="" index="" |="" 首页摘要="">
+
+<a id="more"></a>
+<p>阅读笔记</p>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br>HashMap已经取代了Hashtable</the></p>
+<h2 id="对象的初始化"><a href="#对象的初始化" class="headerlink" title="对象的初始化"></a>对象的初始化</h2><p>在实例化类的时候是先调用他的无参构造函数、若没有java会自动帮你创建一个、但如果你已经定义了一个构造器他就不会帮你创建默认无参构造器、此时可能会报错<br>initialize()<br>this方法只能在方法内部使用、表示调用方法的那个对象的引用<br>static方法里面不能调用this、一般static方法是通过类来直接调用的、相当于全局方法。</p>
+<h2 id="finalize方法"><a href="#finalize方法" class="headerlink" title="finalize方法"></a>finalize方法</h2><p>它是在 Object 类中定义的，因此所有的类都继承了它。<br>子类覆盖 finalize()方法以整理系统资源或者执行其他清理工作。<br>对象可能不会被回收<br>finalize() 方法是在垃圾收集器准备删除对象之前对这个对象调用的。 finalize()方法主要用来在垃圾收集器将对象从内存中清除出去之前做必要的清理工作。<br>当你用了创建对象方式以外的方式为对象分配了内存空间、此时需要用finalize()方法、例如java调用非java代码的方式</p>
+<h2 id="组合（composition）与继承"><a href="#组合（composition）与继承" class="headerlink" title="组合（composition）与继承"></a>组合（composition）与继承</h2><p>组合：为了使类实现多功能、会在类中定义成员变量、各个成员变量来自于其他的类以此来达到类的多样性、当需要向上转型时再考虑使用继承</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态的作用是消除类型之间的耦合关系、多态方法调用允许一种类型表现出与其他相似类型的区别</p>
+</excerpt>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2001/01/02/1-1-2/">Think in Java</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2001/01/02/1-1-2/" title="Think in Java">https://www.shadowerli.com/2001/01/02/1-1-2/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://www.shadowerli.com/2001/01/02/1-1-2/　　作者: Shadowerli" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cnn/">cnn</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+<nav id="article-nav">
+  
+    <a  href="/2017/12/02/2017-12-02/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Webnote
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2001/01/01/1-1-1 /" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法及深入解析Java</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象的初始化"><span class="toc-number">1.</span> <span class="toc-text">对象的初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#finalize方法"><span class="toc-number">2.</span> <span class="toc-text">finalize方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组合（composition）与继承"><span class="toc-number">3.</span> <span class="toc-text">组合（composition）与继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态"><span class="toc-number">4.</span> <span class="toc-text">多态</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
 
     
 
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2017/12/02/2017-12-02/" title="上一篇: Webnote">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2001/01/01/1-1-1 /" title="下一篇: 算法及深入解析Java">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/01/2018-8-1/">Hdfs源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/2018-7-23 /">Spark源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/01/2018-7-3/">个人简历</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/05/2018-6-5/">RPC通信机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/03/2018-5-3 /">安全检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/2018-1-12/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/2017-12-10/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/2017-12-02/">Webnote</a></li><li class="post-list-item"><a class="post-list-link" href="/2001/01/02/1-1-2/">Think in Java</a></li><li class="post-list-item"><a class="post-list-link" href="/2001/01/01/1-1-1 /">算法及深入解析Java</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
 
 </div>
       <footer id="footer">
@@ -414,17 +515,6 @@ ga('send', 'pageview');
         };
     })
 </script>
-
-    <button class="hide-labels">TAG 开关</button>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js">
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("button").click(function() {
-                $(".article-info").toggle(200);
-            });
-        });
-    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
