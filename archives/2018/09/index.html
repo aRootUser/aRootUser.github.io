@@ -7,19 +7,14 @@
   
   
   
-  <title>Spark源码阅读 | welcome to my blog</title>
+  <title>Archives: 2018/9 | welcome to my blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="先从整体来讲讲spark的整个流程">
-<meta name="keywords" content="spark">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spark源码阅读">
-<meta property="og:url" content="https://www.shadowerli.com/2018/07/23/2018-7-23 /index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="welcome to my blog">
+<meta property="og:url" content="https://www.shadowerli.com/archives/2018/09/index.html">
 <meta property="og:site_name" content="welcome to my blog">
-<meta property="og:description" content="先从整体来讲讲spark的整个流程">
-<meta property="og:updated_time" content="2018-07-27T11:19:38.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark源码阅读">
-<meta name="twitter:description" content="先从整体来讲讲spark的整个流程">
+<meta name="twitter:title" content="welcome to my blog">
   
     <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
   
@@ -44,8 +39,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: true,
-          isArchive: false,
+          isPost: false,
+          isArchive: true,
           isTag: false,
           isCategory: false,
           open_in_new: false
@@ -259,192 +254,60 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-2018-7-23 " class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a  href="/2018/07/23/2018-7-23 /" class="article-date">
-      <time datetime="2018-07-22T16:00:00.000Z" itemprop="datePublished">2018-07-23</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a  href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a  href="/2018/09/13/2018-9-13/" class="archive-article-date">
+      <time datetime="2018-09-12T16:00:00.000Z" itemprop="datePublished">09-13</time>
 </a>
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Spark源码阅读
+    <h1 itemprop="name">
+      <a  class="archive-article-title" href="/2018/09/13/2018-9-13/">Hdfs RPC流程</a>
     </h1>
   
 
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-archive">
+          
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/大数据/">大数据</a>
     </div>
 
 
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
           
-        <p><excerpt in="" index="" |="" 首页摘要=""><br>先从整体来讲讲spark的整个流程<br><a id="more"></a><br>从今天开始终于要做想做了很久的事–学习spark源码。难度异常之大、无论是scala的复杂语法、还是底层复杂的RPC调用都不是短时间内捋的清的、<br>但也只能硬着头皮上了、毕竟不能只做一个调包侠是吧。这篇博客长期更新、每天记录一部分、希望有一天无论是对于spark还是scala都有一种茅塞顿开的感觉、<br>最后再感慨一下、上班真好！！！</excerpt></p>
-<h2 id="spark作业提交至执行流程"><a href="#spark作业提交至执行流程" class="headerlink" title="spark作业提交至执行流程"></a>spark作业提交至执行流程</h2><p>整个spark作业执行流程单位从大到小分别为DAG、stage、taskset、rdd(task)<br>执行步骤为:提交作业job后首先构建生成DAG、通过DAGScheduler调度根据依赖对DAG进行切分得到stage、然后TaskScheduler接受stage后对taskset进行管理并分配给Worker、Worker执行任务<br>stage:由DAGScheduler根据依赖对DAG进行切分得到的单位<br>taskest:每个stage包含若干个taskset、每个taskset包含多个task<br>DAGScheduler:接收DAG后进行划分stage(上游的为ShuffleMapStage、下游为ResultStage)、<br>根据每个stage的partition创建多个Task、最后以taskset的形式提交给TaskScheduler<br>TaskScheduler:接受stage后创建TaskManager对Taskset进行管理、把TaskManager添加到调度池将其交给SchedulerBackend处理(他通过申请TaskScheduler、按照Task调度算法对TaskManager进行排序、然后对Taskset进行分配资源)、</p>
-<h2 id="spark-shuffle的细节"><a href="#spark-shuffle的细节" class="headerlink" title="spark shuffle的细节"></a>spark shuffle的细节</h2><p>先从spark shuffle的问题开始说起<br>早期的spark shuffle存在两个问题1、如果map阶段的输出过大容易造成内存溢出OOM 2、如果reduce的数目过多、每个map的输出结果放到的分区数目过大、会使IO的资源消耗比较严重<br>所以有了如下改进方法<br>1、map输出的结果不是一次性全部输出而是一部分一部分输出、当出现内存空间不足时再将部分数据写到磁盘中<br>2、所有的map输出放到一个合并到一个busket、<br>3、reduce也是逐条拉取、而不是一次性读取</p>
-<h2 id="spark的内存优化"><a href="#spark的内存优化" class="headerlink" title="spark的内存优化"></a>spark的内存优化</h2><p>Tungsten(钨)直接调用sun的api操作内存、所以不用再jvm上创建额外的类和对象</p>
-<h2 id="spark各组件间的通信"><a href="#spark各组件间的通信" class="headerlink" title="spark各组件间的通信"></a>spark各组件间的通信</h2><p>Driver是spark的驱动程序、Driver上有一个心跳接收器HeartbeatReceiver、用来接收excutor的心跳信息、每个活跃的excutor都会定时向接收器发送HeartBeat消息<br>具体的细节如下</p>
-
-      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
     </div>
-    
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/07/23/2018-7-23 /">Spark源码阅读</a></p>
-        <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/07/23/2018-7-23 /" title="Spark源码阅读">https://www.shadowerli.com/2018/07/23/2018-7-23 /</a>
-            <span class="copy-path" data-clipboard-text="原文: https://www.shadowerli.com/2018/07/23/2018-7-23 /　　作者: Shadowerli" title=""></span>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-
-
-<nav id="article-nav">
-  
-    <a  href="/2018/08/01/2018-8-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Hdfs源码阅读
-        
-      </div>
-    </a>
-  
-  
-    <a  href="/2018/06/05/2018-6-5/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RPC通信机制</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-
-  
 </article>
-
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#spark作业提交至执行流程"><span class="toc-number">1.</span> <span class="toc-text">spark作业提交至执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark-shuffle的细节"><span class="toc-number">2.</span> <span class="toc-text">spark shuffle的细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark的内存优化"><span class="toc-number">3.</span> <span class="toc-text">spark的内存优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spark各组件间的通信"><span class="toc-number">4.</span> <span class="toc-text">spark各组件间的通信</span></a></li></ol>
-</div>
-<style>
-    .left-col .switch-btn {
-        display: none;
-    }
-    .left-col .switch-area {
-        display: none;
-    }
-</style>
-<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script>
-    var valueHide = "隐藏目录";
-    var valueShow = "显示目录";
-    if ($(".left-col").is(":hidden")) {
-        $("#tocButton").attr("value", valueShow);
-    }
-    $("#tocButton").click(function() {
-        if ($("#toc").is(":hidden")) {
-            $("#tocButton").attr("value", valueHide);
-            $("#toc").slideDown(320);
-            $(".switch-btn, .switch-area").fadeOut(300);
-        }
-        else {
-            $("#tocButton").attr("value", valueShow);
-            $("#toc").slideUp(350);
-            $(".switch-btn, .switch-area").fadeIn(500);
-        }
-    })
-    if ($(".toc").length < 1) {
-        $("#toc, #tocButton").hide();
-        $(".switch-btn, .switch-area").show();
-    }
-</script>
-
-
-
-
-<div class="bdsharebuttonbox">
-</div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-
-
+  
+  
+    </div></section>
+  
 
     
 
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a  href="/2018/08/01/2018-8-1/" title="上一篇: Hdfs源码阅读">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-        
-            <a  href="/2018/06/05/2018-6-5/" title="下一篇: RPC通信机制">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/2018-9-13/">Hdfs RPC流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/01/2018-8-1/">Hdfs源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/23/2018-7-23 /">Spark源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/06/05/2018-6-5/">RPC通信机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/03/2018-5-3 /">安全检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/21/2018-3-22/">基于卷积的图片识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/22/2018-2-22/">Java Future</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/10/2018-2-10/">Lstm入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/27/2018-1-27/">数据集生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/2018-1-12/">Java动态代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/2017-12-10/">基本神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/2017-12-02/">Webnote</a></li><li class="post-list-item"><a class="post-list-link" href="/2001/01/02/1-1-2/">Think in Java</a></li><li class="post-list-item"><a class="post-list-link" href="/2001/01/01/1-1-1 /">算法及深入解析Java</a></li></ul>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-    <script>
-        $(".post-list").addClass("toc-article");
-        // $(".post-list-item a").attr("target","_blank");
-        $("#post-nav-button > a:nth-child(2)").click(function() {
-            $(".fa-bars, .fa-times").toggle();
-            $(".post-list").toggle(300);
-            if ($(".toc").length > 0) {
-                $("#toc, #tocButton").toggle(200, function() {
-                    if ($(".switch-area").is(":visible")) {
-                        $("#toc, .switch-btn, .switch-area").toggle();
-                        $("#tocButton").attr("value", valueHide);
-                        }
-                    })
-            }
-            else {
-                $(".switch-btn, .switch-area").fadeToggle(300);
-            }
-        })
-    </script>
-
-
-
-
-    <script>
-        
-    </script>
 
 </div>
       <footer id="footer">
@@ -514,6 +377,17 @@ ga('send', 'pageview');
         };
     })
 </script>
+
+    <button class="hide-labels">TAG 开关</button>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                $(".article-info").toggle(200);
+            });
+        });
+    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
