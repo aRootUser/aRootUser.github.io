@@ -3,6 +3,88 @@
 
 
     
+    
+    
+  <url>
+    <loc>https://www.shadowerli.com/2018/05/03/2018-5-3%20/</loc>
+    <lastmod>2018-12-11T13:40:05.145Z</lastmod>
+    <data>
+        <display>
+        <title>安全检测</title>
+        <pubTime>2018-05-02T16:00:00.000Z</pubTime>
+        
+        <tag>图像识别</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.shadowerli.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.shadowerli.com/2018/04/08/2018-4-8/</loc>
+    <lastmod>2018-12-11T13:39:58.037Z</lastmod>
+    <data>
+        <display>
+        <title>定点识别</title>
+        <pubTime>2018-04-07T16:00:00.000Z</pubTime>
+        
+        <tag>图像识别</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.shadowerli.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.shadowerli.com/2018/03/21/2018-3-22/</loc>
+    <lastmod>2018-12-11T13:39:46.299Z</lastmod>
+    <data>
+        <display>
+        <title>基于卷积的图片识别</title>
+        <pubTime>2018-03-20T16:00:00.000Z</pubTime>
+        
+        <tag>cnn</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.shadowerli.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.shadowerli.com/2017/12/10/2017-12-10/</loc>
+    <lastmod>2018-12-11T13:39:33.622Z</lastmod>
+    <data>
+        <display>
+        <title>基本神经网络</title>
+        <pubTime>2017-12-09T16:00:00.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.shadowerli.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>https://www.shadowerli.com/2018/09/13/2018-9-13/</loc>
     <lastmod>2018-09-15T10:57:39.514Z</lastmod>
@@ -22,87 +104,6 @@
     </data>
     </url>
 
-    
-  <url>
-    <loc>https://www.shadowerli.com/2018/03/21/2018-3-22/</loc>
-    <lastmod>2018-05-20T05:49:55.600Z</lastmod>
-    <data>
-        <display>
-        <title>基于卷积的图片识别</title>
-        <pubTime>2018-03-20T16:00:00.000Z</pubTime>
-        
-        <tag>cnn</tag>
-         
-         
-           
-             
-              <breadCrumb title="深度学习" url="https://www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.shadowerli.com/2017/12/10/2017-12-10/</loc>
-    <lastmod>2018-05-10T08:13:32.167Z</lastmod>
-    <data>
-        <display>
-        <title>基本神经网络</title>
-        <pubTime>2017-12-09T16:00:00.000Z</pubTime>
-        
-        <tag>深度学习</tag>
-         
-         
-           
-             
-              <breadCrumb title="深度学习" url="https://www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.shadowerli.com/2018/05/03/2018-5-3%20/</loc>
-    <lastmod>2018-05-07T15:16:25.894Z</lastmod>
-    <data>
-        <display>
-        <title>安全检测</title>
-        <pubTime>2018-05-02T16:00:00.000Z</pubTime>
-        
-        <tag>图像识别</tag>
-         
-         
-           
-             
-              <breadCrumb title="深度学习" url="https://www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.shadowerli.com/2018/04/08/2018-4-8/</loc>
-    <lastmod>2018-04-29T11:52:07.843Z</lastmod>
-    <data>
-        <display>
-        <title>定点识别</title>
-        <pubTime>2018-04-07T16:00:00.000Z</pubTime>
-        
-        <tag>图像识别</tag>
-         
-         
-           
-             
-              <breadCrumb title="深度学习" url="https://www.shadowerli.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
     <loc>https://www.shadowerli.com/2018/01/30/2018-1-30/</loc>
