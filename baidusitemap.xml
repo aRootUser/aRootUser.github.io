@@ -5,10 +5,10 @@
     
   <url>
     <loc>https://www.shadowerli.com/2018/12/10/2018-12-10/</loc>
-    <lastmod>2019-05-31T02:55:28.000Z</lastmod>
+    <lastmod>2019-07-22T15:21:25.365Z</lastmod>
     <data>
         <display>
-        <title>实现自己的分布式文件系统</title>
+        <title>实现Hdfs的几个功能</title>
         <pubTime>2018-12-09T16:00:00.000Z</pubTime>
         
         <tag>hadoop</tag>
