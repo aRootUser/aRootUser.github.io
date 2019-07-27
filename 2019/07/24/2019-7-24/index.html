@@ -16,13 +16,13 @@
 <meta property="og:url" content="https://www.shadowerli.com/2019/07/24/2019-7-24/index.html">
 <meta property="og:site_name" content="welcome to my blog">
 <meta property="og:description" content="解决在实际场景海量DataNode升级问题">
-<meta property="og:image" content="http://aRootUser.github.io/img/8/01">
-<meta property="og:image" content="http://aRootUser.github.io/img/8/02">
-<meta property="og:updated_time" content="2019-07-27T13:20:27.351Z">
+<meta property="og:image" content="http://aRootUser.github.io/img/8/01.png">
+<meta property="og:image" content="http://aRootUser.github.io/img/8/02.png">
+<meta property="og:updated_time" content="2019-07-27T13:21:49.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="海量DataNode升级问题解决">
 <meta name="twitter:description" content="解决在实际场景海量DataNode升级问题">
-<meta name="twitter:image" content="http://aRootUser.github.io/img/8/01">
+<meta name="twitter:image" content="http://aRootUser.github.io/img/8/01.png">
   
     <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
   
@@ -332,9 +332,9 @@
 <li>支持灰度（时间可调控），第一天升级1个DN做灰度测试，第二天升级若干个继续灰度，第三天开始全量升级DN</li>
 <li>自动换包验证，停DN和启动DN，并有验证功能</li>
 <li>全程大象监控，并有失败重试机制，多次重试仍失败则通过大象进行警告</li>
-<li>DN状态列表机制：记录各种状态的DN并且做持久化处理<br><img src="http://aRootUser.github.io/img/8/01"></li>
+<li>DN状态列表机制：记录各种状态的DN并且做持久化处理<br><img src="http://aRootUser.github.io/img/8/01.png"></li>
 </ol>
-<h2 id="发包功能改进"><a href="#发包功能改进" class="headerlink" title="发包功能改进:"></a>发包功能改进:</h2><p>由于初始发包仍然是串行发包，优化后改为了并行发包，类似于病毒传播，每个DN通过master获取下一个DN的地址，直到所有地址都已分配完毕。<br><img src="http://aRootUser.github.io/img/8/02"><br>DN拿到地址后会将包发送到这个地址上，并启动这个DN的升级程序，成功后发送确认信息给master</p>
+<h2 id="发包功能改进"><a href="#发包功能改进" class="headerlink" title="发包功能改进:"></a>发包功能改进:</h2><p>由于初始发包仍然是串行发包，优化后改为了并行发包，类似于病毒传播，每个DN通过master获取下一个DN的地址，直到所有地址都已分配完毕。<br><img src="http://aRootUser.github.io/img/8/02.png"><br>DN拿到地址后会将包发送到这个地址上，并启动这个DN的升级程序，成功后发送确认信息给master</p>
 <p>任何一个DN失败后不影响发包过程，因为父DN仍然会不断的启动新的DN</p>
 <h2 id="升级功能改进"><a href="#升级功能改进" class="headerlink" title="升级功能改进:"></a>升级功能改进:</h2><p>根据机房个数启动相应数量的线程，并发升级</p>
 
