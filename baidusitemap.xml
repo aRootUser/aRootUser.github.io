@@ -3,6 +3,46 @@
 
 
     
+  <url>
+    <loc>https://www.shadowerli.com/2019/09/20/2018-3-22/</loc>
+    <lastmod>2019-10-09T13:34:40.870Z</lastmod>
+    <data>
+        <display>
+        <title>DataNode物理结构</title>
+        <pubTime>2019-09-19T16:00:00.000Z</pubTime>
+        
+        <tag>hadoop</tag>
+         
+         
+           
+             
+              <breadCrumb title="大数据" url="https://www.shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.shadowerli.com/2018/09/13/2018-9-13/</loc>
+    <lastmod>2019-10-09T13:22:52.605Z</lastmod>
+    <data>
+        <display>
+        <title>DataNode物理结构</title>
+        <pubTime>2018-09-12T16:00:00.000Z</pubTime>
+        
+        <tag>hadoop</tag>
+         
+         
+           
+             
+              <breadCrumb title="大数据" url="https://www.shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
     
   <url>
@@ -46,26 +86,6 @@
 
     
   <url>
-    <loc>https://www.shadowerli.com/2018/03/21/2018-3-22/</loc>
-    <lastmod>2018-12-11T13:39:48.000Z</lastmod>
-    <data>
-        <display>
-        <title>基于卷积的图片识别</title>
-        <pubTime>2018-03-20T16:00:00.000Z</pubTime>
-        
-        <tag>cnn</tag>
-         
-         
-           
-             
-              <breadCrumb title="机器学习" url="https://www.shadowerli.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://www.shadowerli.com/2017/12/10/2017-12-10/</loc>
     <lastmod>2018-12-11T13:39:34.000Z</lastmod>
     <data>
@@ -79,26 +99,6 @@
            
              
               <breadCrumb title="机器学习" url="https://www.shadowerli.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.shadowerli.com/2018/09/13/2018-9-13/</loc>
-    <lastmod>2018-09-15T10:57:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>Hdfs RPC流程</title>
-        <pubTime>2018-09-12T16:00:00.000Z</pubTime>
-        
-        <tag>hadoop</tag>
-         
-         
-           
-             
-              <breadCrumb title="大数据" url="https://www.shadowerli.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
           
         </display>
     </data>
