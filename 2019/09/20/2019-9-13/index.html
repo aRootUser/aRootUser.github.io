@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>DataNode物理结构 | welcome to my blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简单总结下DataNode的物理结构">
+<meta name="keywords" content="hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DataNode物理结构">
+<meta property="og:url" content="https://www.shadowerli.com/2019/09/20/2019-9-13/index.html">
+<meta property="og:site_name" content="welcome to my blog">
+<meta property="og:description" content="简单总结下DataNode的物理结构">
+<meta property="og:updated_time" content="2019-10-09T13:39:39.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DataNode物理结构">
+<meta name="twitter:description" content="简单总结下DataNode的物理结构">
+  
+    <link rel="alternative" href="/atom.xml" title="welcome to my blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Shadowerli</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                            <li><a  href="/friend/">友链</a></li>
+                        
+                            <li><a  href="/categories/大数据">大数据</a></li>
+                        
+                            <li><a  href="/categories/机器学习">机器学习</a></li>
+                        
+                            <li><a  href="/categories/other">其他</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                            
+                                <a class="fl facebook"  target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/hadoop/" style="font-size: 10px;">hadoop</a> <a href="/tags/other/" style="font-size: 10px;">other</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/图像识别/" style="font-size: 20px;">图像识别</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.shadowerli.com/about">想互相添加友链的邮箱联系、广告除外</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://qiuri.org">秋日的博客</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Shadowerli</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Shadowerli</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                    <li><a href="/friend/">友链</a></li>
+                
+                    <li><a href="/categories/大数据">大数据</a></li>
+                
+                    <li><a href="/categories/机器学习">机器学习</a></li>
+                
+                    <li><a href="/categories/other">其他</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/aRootUser" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/li.mingxiang.5" title="facebook">facebook</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-2019-9-13" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/09/20/2019-9-13/" class="article-date">
+      <time datetime="2019-09-19T16:00:00.000Z" itemprop="datePublished">2019-09-20</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DataNode物理结构
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/大数据/">大数据</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>简单总结下DataNode的物理结构<br><a id="more"></a><br>分两个方向来讲述DataNode的目录结构</excerpt></p>
+<h1 id="一、DataNode磁盘目录结构"><a href="#一、DataNode磁盘目录结构" class="headerlink" title="一、DataNode磁盘目录结构"></a>一、DataNode磁盘目录结构</h1><ol>
+<li>比如datanode上有12个盘，同一个块池目录比如BP-1007908154-10.10.10.10-1533290355162存在于所有的盘上。</li>
+</ol>
+<ol>
+<li>在HDFS-6482之前，是通过LDir这个类来存放具体的数据块的目录位置。所以存在一个很大的问题就是当由于数据块的数量非常大的时候，由于需要在内存中记录数据块的具体位置，还需要记录对应的subdirs，会对DN造成很大的内存开销。<blockquote>
+<p>所以这个Patch的思想是通过两层subdir的方式来存放不同的数据块。具体实现是DatanodeUtil.idToBlockDir()分别根据块池id，取第二和第三个字节位来得到两层的subdir的id。这样只需要在用到的时候计算出相应目录即可。</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="二、副本状态"><a href="#二、副本状态" class="headerlink" title="二、副本状态"></a>二、副本状态</h1><p>1.NameNode副本状态<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">enum</span> BlockUCState &#123;</span><br><span class="line">   <span class="comment">//commit状态的块收到DN的块汇报后</span></span><br><span class="line">   COMPLETE,</span><br><span class="line">   <span class="comment">//正在写入的数据块，大部分的数据块读可见，对应Replica的状态为RBW</span></span><br><span class="line">   UNDER_CONSTRUCTION,</span><br><span class="line">   <span class="comment">//如果客户端写文件超过租约后，如果最后一个数据块处于UNDER_CONSTRUCTION状态，当block恢复开始时，UnderConstruction变为UnderRecovery状态，对应Replica的状态为RUR</span></span><br><span class="line">   UNDER_RECOVERY,</span><br><span class="line">   <span class="comment">//客户端每次请求新的数据块时候，比如写文件，都会对上一个数据块进行提交。这个表示客户端已经收到这个数据块的请求了，只是还没有收到DN的块汇报</span></span><br><span class="line">   COMMITTED;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.DataNode副本状态<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//所有副本状态类的父类</span></span><br><span class="line"><span class="comment">//子类有 FinalizedReplica，ReplicaBeingWritten，ReplicaUnderRecovery，ReplicaWaitingToBeRecovered，ReplicaInPipeline</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReplicaInfo</span> <span class="keyword">extends</span> <span class="title">Block</span> <span class="keyword">implements</span> <span class="title">Replica</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//分别对应于ReplicaState</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">enum</span> ReplicaState &#123;</span><br><span class="line">    <span class="comment">/** Replica is finalized. The state when replica is not modified. */</span></span><br><span class="line">    FINALIZED(<span class="number">0</span>),</span><br><span class="line">    <span class="comment">/** Replica is being written to. */</span></span><br><span class="line">    RBW(<span class="number">1</span>),</span><br><span class="line">    <span class="comment">/** Replica is waiting to be recovered. */</span></span><br><span class="line">    RWR(<span class="number">2</span>),</span><br><span class="line">    <span class="comment">/** Replica is under recovery. */</span></span><br><span class="line">    RUR(<span class="number">3</span>),</span><br><span class="line">    <span class="comment">/** Temporary replica: created for replication and relocation only. */</span></span><br><span class="line">    TEMPORARY(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>RWR: ReplicaWaitingToBeRecovered </p>
+<ol>
+<li>如果client挂了之后，RWR状态下的replica将会过期，或者将出现在租约恢复的过程中(将RBW状态的Replica转为RWR)<br>1</li>
+<li>在DN重启加载块的时候，会将所有RWR目录下的数据块标记为ReplicaWaitingToBeRecovered，并将其及副本信息一起添加到ReplicaMap中</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReplicaMap</span></span>&#123;</span><br><span class="line">  <span class="comment">//池id-&gt;（块id-&gt;副本信息）</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Map&lt;Long, ReplicaInfo&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;String, Map&lt;Long, ReplicaInfo&gt;&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>FINALIZED: FinalizedReplica</p>
+<ol>
+<li>表示这个块已经写入完成了，对所有用户都是可见的，最终DU等统计都是以FinalizedReplica的副本为准</li>
+</ol>
+<p>RBW: ReplicaBeingWritten</p>
+<ol>
+<li><p>通常表示一个文件中最后一个正在写入的副本</p>
+</li>
+<li><p>bytesAcked:表示接收到下游ack的bytes数，bytesReserved，block已经接收到的bytes数，包括写入磁盘的和在dn内存中的数据</p>
+</li>
+<li><p>当datanode向下一个datanode发送的数据块写成功了，并且接收到了下一个datanode的ack时，会通过finalizeBlock()提交这个数据块</p>
+</li>
+<li><p>在DN重启加载块的时候，会将所有RBW目录下的数据块标记为ReplicaWaitingToBeRecovered</p>
+</li>
+</ol>
+<p>RUR: ReplicaUnderRecovery</p>
+<ol>
+<li>租约恢复时候，任意一个非Temporary状态的副本都有可能转换为RUR状态。</li>
+<li>比如当客户端写文件中途退出时候，为了保证最后一个数据块的数据一致性，NN会通过下发恢复指令，选择一个主节点，最终通过FsDatasetImpl.initReplicaRecovery()对这个数据块进行恢复</li>
+</ol>
+<p>TEMPORARY: </p>
+<ol>
+<li>数据对客户端不可见</li>
+<li>当DataNode成功接收了其他DataNode的数据块之后，通过DataSetImpl.createTemporary()创建tmp目录，会将这个状态的副本转换为RBW状态</li>
+</ol>
+<p>ReplicaInPipeline:</p>
+<ol>
+<li>通过DataSetImpl.createTemporary()创建的副本类型为ReplicaInPipeline类型<h2 id="各个目录文件的简单总结"><a href="#各个目录文件的简单总结" class="headerlink" title="各个目录文件的简单总结"></a>各个目录文件的简单总结</h2></li>
+</ol>
+<ul>
+<li>finalized：客户端已经完成写入并提交的数据块</li>
+<li>rbw：客户端正在写入的</li>
+<li>tmp：比如当这个副本是Datanode在接收其他Datanode写数据块的请求时在构造BlockReceiver时调用的，即写数据块拷贝的时候，最终调用的入口为DataSetImpl.createTemporary()</li>
+<li>in_used.lock：在初始化块池时，要根据当前的目录分析当前的状态时，会对这个目录加锁。</li>
+</ul>
+<h1 id="三、目录结构对应的逻辑结构"><a href="#三、目录结构对应的逻辑结构" class="headerlink" title="三、目录结构对应的逻辑结构"></a>三、目录结构对应的逻辑结构</h1><h2 id="1-目录维度"><a href="#1-目录维度" class="headerlink" title="1.目录维度"></a>1.目录维度</h2><p>FsDatasetImpl: 实现了FsDatasetSpi接口，管理DataNode上所有的数据块，一些对数据块的各种操作最终都是要访问这个类</p>
+<p>FSVolumeImpl: 管理单个存储目录保存的所有数据块，内部通过CHM维护当前目录下块池ID对应的BlockPoolSlice的映射</p>
+<p>FSVolumeList: 维护所有FSVolumeImpl的引用，通过FsVolumeImpl[]的AtomicReference来管理</p>
+<p>BlockPoolSlice: 管理一个块池的所有数据块，所有的数据块是通过ReplicaMap这个类来进行管理的，ReplicaMap中通过HashMap&lt;String, Map&lt;Long, ReplicaInfo&gt;&gt;来记录，块池id-&gt;（块id-&gt;副本信息）</p>
+<p>BlockPoolSliceStorage: 一个BlockPoolSliceStorage用来管理名字相同的所有的BlockPoolSlice</p>
+<h2 id="2-功能维度"><a href="#2-功能维度" class="headerlink" title="2.功能维度"></a>2.功能维度</h2><p>每个块池对应于每个BPOfferService，目前一共有41个块池，对应线上41个namespace，BPOfferService内部维护了BPServiceActor的列表，实际和NN进行交互的逻辑都是在BPServiceActor中。</p>
+<p>BPOfferService内部还维护了NamespaceInfo的信息，只有当它向NN注册之后才会获取这个信息。</p>
+<h1 id="四、DN启动时两个维度间的交互"><a href="#四、DN启动时两个维度间的交互" class="headerlink" title="四、DN启动时两个维度间的交互"></a>四、DN启动时两个维度间的交互</h1><h2 id="1-重启时主要过程"><a href="#1-重启时主要过程" class="headerlink" title="1.重启时主要过程"></a>1.重启时主要过程</h2><ul>
+<li>首先DN通过配置文件获取NN的命名空间和对应的通信地址</li>
+<li>DN根据命名空间的个数创建对应的BPOfferService，并且在每个BPOfferService中创建数量相同的BPServiceActor来维持通信</li>
+<li>通过调用BPOfferService.start()方法启动BPOfferService下的所有BPServiceActor</li>
+<li>BPServerActor和NN进行握手</li>
+<li>rpc获取NamespaceInfo信息，包含了块池的ID，即BlockPoolID，BP-1007908154-10.10.10.10-1533290355162，还有代码的版本，还有ClusterID，如果失败会sleep一段时间后继续重试。拿到信息后还要进行版本的校验。因为同一组BPActor最终是在BPofferService中的，所以BPofferService只要通过加锁BPOfferService.NamespaceInfo判断是否为空已经初始化过了，来保证一个每个BPofferService中只会进行一次尝试DN初始化操作。</li>
+<li>如果这是当前BPofferService第一个启动的Actor，还会进行初始化块池，如果块池已经初始化完成了则会跳过。</li>
+<li>向NN进行注册，注册的时候会不断尝试直到成功。</li>
+<li>一直执行BPServiceActor.offerService()直到退出- </li>
+<li>发送心跳包</li>
+<li>计算时间定时发送心跳，首先构造StorageReport</li>
+<li>StorageReport初始化的时候会通过DataSetImpl获取每块盘下的存储信息</li>
+<li>发送心跳包时，除了storageReport还包含DN的DU等情况的一些信息</li>
+<li>NN接受心跳包</li>
+<li>Rpc调用sendHeartbeat()</li>
+<li>通过datanodeManger来处理心跳，根据dataNode的id获取dataNodeMap中的DatanodeDescriptor</li>
+<li>最后通过DatanodeDescriptor.updateHeartbeatState()来更新心跳</li>
+<li>每次心跳都会根据report数组来更新这个map，并且把错误的DatanodeStorage从map中移除</li>
+<li>更新失败块的状态，normal–&gt;failed 最后对这个DatanodeDescriptor中的map进行修剪</li>
+<li>NN上还有一个异步的线程定时来检查DatanodeDescriptor坏掉的卷上是否有数据块，如果有则通过blockManager将这些块都移除</li>
+<li>处理从NN发送回来的信息</li>
+<li>调用BPOfferService.processCommand()方法对命令数组进行处理，根据NN返回的cmds数组执行对应的操作</li>
+</ul>
+<h2 id="2-块池初始化逻辑"><a href="#2-块池初始化逻辑" class="headerlink" title="2.块池初始化逻辑"></a>2.块池初始化逻辑</h2><p>主要流程：盘目录的初始化，块池的初始化，数据块的初始化。</p>
+<p>具体的过程：</p>
+<ol>
+<li>DataStorage初始化</li>
+<li>DN上的盘目录的初始化</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//具体的盘的信息存放在DataNode.DataStorage中</span></span><br><span class="line"><span class="comment">//DataStorage extends Storage</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Storage</span> <span class="keyword">extends</span> <span class="title">StorageInfo</span> </span>&#123;</span><br><span class="line"><span class="comment">//存在已经加载完成的盘的列表</span></span><br><span class="line"><span class="keyword">protected</span> List&lt;StorageDirectory&gt; storageDirs = <span class="keyword">new</span> ArrayList&lt;StorageDirectory&gt;();</span><br><span class="line"><span class="comment">//块池的ID到其对应的BlockPoolSliceStorage的映射</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BlockPoolSliceStorage&gt; bpStorageMap = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;String, BlockPoolSliceStorage&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>初始化DN上的存储目录，即之前通过data.dir配置项获取的</p>
+</li>
+<li><p>遍历保存所有的储存的StorageDirectory方法，调用每个StorageDirectory.analyzeStorage() 进行分析</p>
+</li>
+<li><p>加载某个盘的目录时候会通过系统调用判断这个盘目录是否可存在，是否可写，来得到这个盘的一个状态，同时还会判断hasFinalizedTmp，hasRemovedTmp目录的是否存在来判断当前的是否处于升级状态的某个阶段。通常情况下在加载完这个盘后就是Normal状态，最后会持久化Version文件到本地。当这个目录初始化完成后最终会将其添加到上述的storageDirs中。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> hasPrevious = getPreviousDir().exists();</span><br><span class="line"><span class="keyword">boolean</span> hasPreviousTmp = getPreviousTmp().exists();</span><br><span class="line"><span class="keyword">boolean</span> hasRemovedTmp = getRemovedTmp().exists();</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="keyword">if</span> (hasCurrent)</span><br><span class="line">          <span class="keyword">return</span> StorageState.NORMAL;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>DN中定义的存储目录下对应的块池的初始化</li>
+<li>上面加载的都是盘的目录，由于这个块池是存在于所有盘的。所以BlockPoolSliceStorage.recoverTransitionRead()要在每个盘上对应的块池目录调用一次这个方法，(由于BlockPoolSliceStorage也是继承于Storage所以也是有如上两个列表来记录加载完成的目录的信息)，只不过这里对应的盘的列表就变成了对应的块池目录的列表</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (StorageLocation dataDir : dataDirs) &#123;</span><br><span class="line">  <span class="comment">//....</span></span><br><span class="line">  BlockPoolSliceStorage bpStorage = <span class="keyword">this</span>.bpStorageMap.get(bpid);</span><br><span class="line">    <span class="keyword">if</span> (bpStorage == <span class="keyword">null</span>) &#123;</span><br><span class="line">       bpStorage = <span class="keyword">new</span> BlockPoolSliceStorage( );</span><br><span class="line">    &#125;</span><br><span class="line">    bpStorage.recoverTransitionRead( )</span><br><span class="line">    addBlockPoolStorage(bpid, bpStorage);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>构造BlockPoolSliceStorage对象，调用BlockPoolSliceStorage.recoverTransitionRead()对每个块池初始化</li>
+<li>块池的初始化和上面的过程类似先analyzeStorage()分析状态，然后根据状态进行恢复，通常重启是normal状态，根据不同的状态执行对应的操作</li>
+<li>所以最终块池目录加载完毕后DataStorage.bpStorageMap中会存在所有块池id及其对应BlockPoolSliceStorage的唯一映射。</li>
+<li>DataSetImpl初始化，通过工厂模式创建</li>
+<li><p>初始化volumes</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//FsVolumeLis用来存放FsVolumeImpl的结构，好处是checkDirs(), getAvailable()就不需要加锁了</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> AtomicReference&lt;FsVolumeImpl[]&gt; volumes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据DN的存储目录初始化FsVolumeImpl</p>
+</li>
+<li>cas并发的添加到AtomicReference&lt;FsVolumeImpl[]&gt; volumes，checkDirs(), getAvailable()</li>
+<li>添加对blockScanner的引用，blockScanner在DN初始化后就已经完成</li>
+<li>在volumes添加FsVolumeReference时候会在blockScanner中也添加FsVolumeReference</li>
+<li>初始化完毕后开始在FsVolumeLis创建多个线程并发的添加块池</li>
+<li>遍历volumes列表调用 FsVolumeImpl.addBlockPool()方法</li>
+<li>FsVolumeImpl构造BlockPoolSlice 并将其添加到bpSlices 的Map中</li>
+<li>首先启动和盘的数量相同的线程并行的加载每个盘下的块池目录，比如初始化每个盘下对应的块池id-&gt;BlockPoolSliceStorage的映射。</li>
+<li>构造BlockPoolSlice时会创建current，rbw，tmp，等目录</li>
+<li>数据块的初始化操作</li>
+<li>块池目录加载完成后，启动多个线程对每个盘下的数据块副本进行加。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Thread&gt; replicaAddingThreads = <span class="keyword">new</span> ArrayList&lt;Thread&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">final</span> FsVolumeImpl v : volumes.get()) &#123;</span><br><span class="line">  Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;</span><br><span class="line">  replicaAddingThreads.add(t);</span><br><span class="line">  t.start();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (Thread t : replicaAddingThreads) &#123;</span><br><span class="line">  t.join();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>最终通过BlockPoolSlice.addToReplicasMap()在每个传入的ReplicaMap上添加各个目录下的数据块，比如Finalize和rbwDir的数据块。</li>
+<li>最终初始化之后的结果是FsVolumeList这个类中的volumes包含了所有的盘的目录，并且每个FsVolumeImpl中记录了每个目录下的各个块的实例，最终存放在ReplicaMap.Map&lt;String, Map&lt;Long, ReplicaInfo&gt;&gt; map这个map中块池id-&gt;（块id-&gt;副本信息）</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/09/20/2019-9-13/">DataNode物理结构</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 Shadowerli 的个人博客">Shadowerli</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/09/20/2019-9-13/" title="DataNode物理结构">https://www.shadowerli.com/2019/09/20/2019-9-13/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://www.shadowerli.com/2019/09/20/2019-9-13/　　作者: Shadowerli" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a  href="/2018/05/03/2018-5-3 /" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">安全检测</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、DataNode磁盘目录结构"><span class="toc-number">1.</span> <span class="toc-text">一、DataNode磁盘目录结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、副本状态"><span class="toc-number">2.</span> <span class="toc-text">二、副本状态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#各个目录文件的简单总结"><span class="toc-number">2.1.</span> <span class="toc-text">各个目录文件的简单总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、目录结构对应的逻辑结构"><span class="toc-number">3.</span> <span class="toc-text">三、目录结构对应的逻辑结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-目录维度"><span class="toc-number">3.1.</span> <span class="toc-text">1.目录维度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-功能维度"><span class="toc-number">3.2.</span> <span class="toc-text">2.功能维度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、DN启动时两个维度间的交互"><span class="toc-number">4.</span> <span class="toc-text">四、DN启动时两个维度间的交互</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-重启时主要过程"><span class="toc-number">4.1.</span> <span class="toc-text">1.重启时主要过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-块池初始化逻辑"><span class="toc-number">4.2.</span> <span class="toc-text">2.块池初始化逻辑</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/05/03/2018-5-3 /" title="下一篇: 安全检测">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/09/20/2019-9-13/">DataNode物理结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/03/2018-5-3 /">安全检测</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/08/2018-4-8/">定点识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/23/2018-3-23/">博客搬家</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/30/2018-1-30/">K-近邻算法Python实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/10/2017-12-10/">基本神经网络</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 LMX
+            </div>
+            <div class="footer-right">
+                <a href="https://hexo.io/" target="_blank">theme by hexo &nbsp;&nbsp;</a>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 4;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
